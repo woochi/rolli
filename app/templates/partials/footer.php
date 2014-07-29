@@ -11,7 +11,8 @@
 			<!-- /footer -->
 
 		</div>
-		<!-- /wrapper -->
+
+<?php if (!is_ajax()): ?>
 
 		<?php wp_footer(); ?>
 		<script>
@@ -35,3 +36,4 @@
 
 	</body>
 </html>
+<?php endif; ?>

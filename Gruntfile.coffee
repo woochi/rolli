@@ -39,6 +39,7 @@ module.exports = ( grunt ) ->
         files: [
           {expand: true, flatten: true, src: ['app/templates/**'], dest: 'build/', filter: 'isFile'}
           {expand: true, flatten: true, src: ['app/functions/**'], dest: 'build/', filter: 'isFile'}
+          {expand: true, flatten: true, src: ['app/includes/**'], dest: 'build/includes', filter: 'isFile'}
           {expand: true, flatten: true, cwd: "app/assets/", src: ['images/**'], dest: 'build/images', filter: "isFile"}
           {expand: true, flatten: true, cwd: "app/assets/", src: ['images/screenshot.png'], dest: 'build/'}
           {expand: true, flatten: true, cwd: "app/assets/", src: ['fonts/**'], dest: 'build/fonts'}
@@ -54,7 +55,7 @@ module.exports = ( grunt ) ->
         files: ["app/assets/javascripts/**/*.coffee"]
         tasks: ["browserify"]
       php:
-        files: ["app/templates/**/*.php", "app/functions/**/*.php"]
+        files: ["app/templates/**/*.php", "app/functions/**/*.php", "app/includes/**/*.php"]
         tasks: ["copy"]
     clean: ['build', "package"]
     zip:
@@ -62,6 +63,10 @@ module.exports = ( grunt ) ->
     bower:
       build:
         dest: "vendor/javascripts"
+        options:
+          packageSpecific:
+            'velocity':
+              files: ["velocity.ui.js"]
     deploy:
       options:
         src: "./build"
