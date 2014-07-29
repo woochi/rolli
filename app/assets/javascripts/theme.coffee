@@ -2,7 +2,10 @@
 Bacon = require("bacon")
 velocity = require("velocity")
 
+getDocumentHeight = -> $(document).height()
+
 scrolls = $(document).asEventStream("scroll").debounceImmediate(100)
+
 opens = $(".open-nav").asEventStream("click")
   .filter((e) ->
     e.stopImmediatePropagation()
@@ -14,7 +17,16 @@ closes = $(".wrapper").asEventStream("click")
 navOpen = opens.merge(closes).merge(scrolls.map(false))
   .skipDuplicates()
   .toProperty($("body").hasClass("nav-open"))
+navCloses = navOpen.changes().filter((open) -> !open)
 
 navOpen.onValue (open) ->
-  console.log "NAV OPEN", open
   $("body").toggleClass "nav-open", open
+  if open
+    resizes = $(window).asEventStream("resize").takeUntil(navCloses).debounce(500)
+    resizes.onEnd -> console.log "ENDED"
+    resizes.map(getDocumentHeight)
+      .skipDuplicates()
+      .toProperty(getDocumentHeight())
+      .onValue (height) ->
+        console.log "RESIZE", height
+        $(".nav").height height
