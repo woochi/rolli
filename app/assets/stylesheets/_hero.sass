@@ -2,3 +2,33 @@
   background-color: $black
   background-repeat: no-repeat
   background-size: cover
+
+.hero-content
+  padding: rhythm(1) 5%
+  text-align: center
+
+@media #{$medium-up}
+
+  .hero-content
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    width: rhythm(20)
+    height: rhythm(7)
+    margin: auto
+    padding: 0
+
+    &.pull-bottom-left
+      margin-left: rhythm(2)
+      margin-bottom: rhythm(2)
+      text-align: left
+
+@media #{$large-up}
+
+  .hero-content
+
+    &.pull-bottom-left
+      margin-left: rhythm(3)
+      margin-bottom: rhythm(3)

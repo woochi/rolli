@@ -87,19 +87,23 @@ function html5blank_nav()
 	);
 }
 
-// Load HTML5 Blank scripts (header.php)
-function html5blank_header_scripts()
+// Load HTML5 Blank scripts (footer.php)
+function html5blank_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-    	wp_register_script('conditionizr', get_template_directory_uri() . '/javascripts/conditionizr.js', array(), '4.3.0'); // Conditionizr
-        wp_enqueue_script('conditionizr'); // Enqueue it!
+      wp_deregister_script('jquery'); // Deregister WP default jQuery
+      wp_register_script('jquery', get_template_directory_uri() . '/javascripts/jquery.js', array(), '2.1.1', true); // Conditionizr
+      wp_enqueue_script('jquery'); // Enqueue it!
 
-        wp_register_script('modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array(), '2.7.1'); // Modernizr
-        wp_enqueue_script('modernizr'); // Enqueue it!
+    	wp_register_script('conditionizr', get_template_directory_uri() . '/javascripts/conditionizr.js', array(), '4.3.0', true); // Conditionizr
+      wp_enqueue_script('conditionizr'); // Enqueue it!
 
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/javascripts/theme.js', array('jquery'), '1.0.0'); // Custom scripts
-        wp_enqueue_script('html5blankscripts'); // Enqueue it!
+      wp_register_script('modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array(), '2.7.1', true); // Modernizr
+      wp_enqueue_script('modernizr'); // Enqueue it!
+
+      wp_register_script('html5blankscripts', get_template_directory_uri() . '/javascripts/theme.js', array('jquery'), '1.0.0', true); // Custom scripts
+      wp_enqueue_script('html5blankscripts'); // Enqueue it!
     }
 }
 
@@ -337,7 +341,7 @@ function html5blankcomments($comment, $args, $depth)
 \*------------------------------------*/
 
 // Add Actions
-add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
+add_action('init', 'html5blank_scripts'); // Add Custom Scripts to wp_head
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet

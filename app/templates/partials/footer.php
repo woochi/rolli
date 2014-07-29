@@ -14,6 +14,14 @@
 		<!-- /wrapper -->
 
 		<?php wp_footer(); ?>
+		<script>
+    // conditionizr.com
+    // configure environment tests
+    conditionizr.config({
+        assets: '<?php echo get_template_directory_uri(); ?>',
+        tests: {}
+    });
+    </script>
 
 		<!-- analytics -->
 		<script>

@@ -1,7 +1,13 @@
+.footer
+  padding: rhythm(0.5) rhythm(1)
+
+.copyright
+  margin: 0
+
 @media #{$medium-up}
 
-  #footer
-    padding: rhythm(1) 5%
+  .footer
+    padding: rhythm(1) rhythm(2)
     +leading-border(1px, 1)
     border-color: $gray
 
@@ -11,3 +17,8 @@
 
   .footer-nav-list
     +nav-list
+
+@media #{$large-up}
+
+  .footer
+    padding: rhythm(1) rhythm(3)

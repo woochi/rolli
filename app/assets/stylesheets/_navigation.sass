@@ -1,0 +1,46 @@
+%nav-link
+  +adjust-font-size-to(14px)
+  +uppercase(1px)
+  font-weight: 500
+  font-family: $header-font-family
+
+.nav
+  position: absolute
+  right: 0
+  top: 0
+  width: $nav-width
+  height: 100%
+  overflow-y: scroll
+
+  > ul
+    list-style: none
+    margin: rhythm(2) 0
+    padding: 0
+
+    > li
+      margin: 0
+
+  a
+    @extend %nav-link
+    display: block
+    padding: 0 rhythm(1.5)
+
+.nav-actions
+  +horizontal-list
+  position: absolute
+  top: rhythm(2)
+  right: rhythm(1)
+
+  a
+    @extend %nav-link
+    color: $white
+
+@media #{$medium-up}
+
+  .nav-acions
+    right: rhythm(2)
+
+@media #{$large-up}
+
+  .nav-actions
+    right: rhythm(3)

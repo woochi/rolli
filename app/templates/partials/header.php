@@ -13,17 +13,15 @@
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
 		<?php wp_head(); ?>
-		<script>
-        // conditionizr.com
-        // configure environment tests
-        conditionizr.config({
-            assets: '<?php echo get_template_directory_uri(); ?>',
-            tests: {}
-        });
-        </script>
 
 	</head>
 	<body <?php body_class(); ?>>
+
+    <!-- nav -->
+		<nav class="nav" role="navigation">
+			<?php html5blank_nav(); ?>
+		</nav>
+		<!-- /nav -->
 
 		<!-- wrapper -->
 		<div class="wrapper">
@@ -40,11 +38,9 @@
 					</div>
 					<!-- /logo -->
 
-					<!-- nav -->
-					<nav id="nav" role="navigation">
-						<?php html5blank_nav(); ?>
-					</nav>
-					<!-- /nav -->
+          <ul class="nav-actions">
+            <li><a class="open-nav">Valikko</a></li>
+					</ul>
 
 			</header>
 			<!-- /header -->

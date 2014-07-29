@@ -3,9 +3,12 @@
   left: 0
   right: 0
   top: 0
+  z-index: $zindex-nav-bar
 
 .logo
-  float: left
+  position: absolute
+  left: rhythm(2)
+  top: rhythm(2)
   margin: 0
   text-indent: -9999px
 
@@ -14,9 +17,6 @@
     display: block
     width: rhythm(11)
     padding: rhythm(0.5) 0
-
-#nav
-  float: right
 
 @mixin nav-list
   list-style: none

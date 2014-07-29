@@ -6,7 +6,8 @@
   ],
   "browser": {
     "jquery": "./vendor/javascripts/jquery.js",
-    "velocity": "./vendor/javascripts/velocity.js"
+    "velocity": "./vendor/javascripts/velocity.js",
+    "bacon": "./vendor/javascripts/bacon.js"
   },
   "browserify-shim": {
     "jquery": "$"
