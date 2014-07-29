@@ -1,0 +1,49 @@
+form
+  @extend %default-margin
+
+fieldset
+  margin: rhythm(1) 0
+  padding: 0
+  border: none
+  outline: none
+
+  > ul
+    list-style: none
+    margin: 0
+    padding: 0
+
+    > li
+      margin: 0 0 rhythm(0.5)
+
+label
+  display: block
+  font-family: $serif-font-family
+  font-style: italic
+
+input
+  +transition(border-color 0.2s)
+  +appearance(none)
+  +rhythm-borders(1px, 0.5)
+  width: 100%
+  outline: none
+  border-radius: 2px
+  border-color: $gray
+  box-shadow: 0 1px 2px rgba($black, 0.1)
+
+  &:focus
+    border-color: $primary-color
+
+.field-description
+  +adjust-font-size-to(14px, 1)
+  margin: 0
+  font-family: $serif-font-family
+  font-style: italic
+  color: $text-color-alt
+
+@media #{$medium-up}
+
+  input
+    width: rhythm(14)
+
+    &.long
+      width: 100%

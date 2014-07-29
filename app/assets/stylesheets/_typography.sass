@@ -1,0 +1,98 @@
+html
+  width: 100%
+  font-size: 100%
+
+body
+  width: 100%
+  font: #{$base-font-size}/#{$base-line-height} $base-font-family
+  color: $text-color
+  overflow-x: hidden
+
+%header
+  font-family: $header-font-family
+  font-weight: $header-font-weight
+  color: $header-font-color
+  text-transform: uppercase
+  letter-spacing: 1px
+
+h1
+  @extend %header
+  +adjust-font-size-to($h1-font-size, 1.75)
+  margin: 0 0 rhythm(1, $h1-font-size)
+
+h2
+  @extend %header
+  +adjust-font-size-to($h2-font-size, 1.5)
+  margin: 0 0 rhythm(1.25, $h2-font-size)
+
+h3
+  @extend %header
+  +adjust-font-size-to($h3-font-size, 1.5)
+  margin: 0 0 rhythm(1, $h3-font-size)
+
+h4
+  @extend %header
+  +adjust-font-size-to($h4-font-size)
+  margin: 0 0 rhythm(1, $h4-font-size)
+
+h5
+  @extend %header
+  +adjust-font-size-to($h5-font-size)
+  margin: 0 0 rhythm(1, $h5-font-size)
+
+h6
+  @extend %header
+  +adjust-font-size-to($h6-font-size)
+  margin: 0 0 rhythm(1, $h6-font-size)
+
+
+// Links
+
+a
+  +link-colors($link-color, $link-color-hover, $link-color-active, $link-color-visited, $link-color-focus)
+  text-decoration: $link-decoration
+  cursor: pointer
+
+// Text blocks
+
+p
+  @extend %default-margin
+
+// Inline styles
+
+.uppercase
+  text-transform: uppercase
+  letter-spacing: 1px
+
+.nowrap
+  white-space: nowrap
+
+// Lists
+
+ol, ul, dl
+  @extend %default-margin
+
+li, dd
+  margin: 0 0 rhythm(0.5)
+
+// Rules
+
+hr
+  @extend %default-margin
+  height: 0
+  margin-top: -1px
+  border: none
+  border-top: 1px solid $black
+
+  &.content-separator
+    margin: rhythm(2) 0
+
+// Tables
+
+// Images and videos
+
+video
+  width: 100%
+  min-height: rhythm(13)
+
+@media #{$large-up}

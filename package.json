@@ -1,0 +1,36 @@
+{
+  "name": "Montage",
+  "description": "",
+  "contributors": [
+    "Mikko Kivelä <mikko.s.kivela@gmail.com>"
+  ],
+  "browser": {
+    "jquery": "./vendor/javascripts/jquery.js",
+    "velocity": "./vendor/javascripts/velocity.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "devDependencies": {
+    "grunt-contrib-stylus": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-coffee": "*",
+    "matchdep": "*",
+    "grunt-express-server": "*",
+    "connect-assets": "*",
+    "grunt-contrib-copy": "*",
+    "browserify": "*",
+    "grunt-browserify": "*",
+    "browserify-shim": "*",
+    "coffeeify": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-clean": "*",
+    "grunt": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-zip": "*",
+    "bower": "*",
+    "grunt-bower": "*"
+  }
+}
