@@ -5,12 +5,13 @@
   font-family: $header-font-family
 
 .nav
+  overflow-y: scroll
   position: absolute
   right: 0
   top: 0
   width: $nav-width
   height: 100%
-  overflow-y: scroll
+  background: $nav-background
 
   > ul
     list-style: none
@@ -24,6 +25,7 @@
     @extend %nav-link
     display: block
     padding: 0 rhythm(1.5)
+    color: $white
 
 .nav-actions
   +horizontal-list
