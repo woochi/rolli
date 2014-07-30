@@ -1,19 +1,18 @@
+Bacon = require("bacon")
+
 getDocumentHeight = -> $(document).height()
 
 Sidebar =
 
-  initialize: (turbolinks) ->
+  initialize: ->
     scrolls = $(document).asEventStream("scroll")
-      .takeUntil(turbolinks)
       .debounceImmediate(100)
     opens = $(".open-nav").asEventStream("click")
-      .takeUntil(turbolinks)
       .filter((e) ->
         e.stopImmediatePropagation()
         !$("body").hasClass("nav-open")
       ).map(true)
     closes = $(".wrapper").asEventStream("click")
-      .takeUntil(turbolinks)
       .map(false)
 
     navOpen = opens.merge(closes).merge(scrolls.map(false))

@@ -1,9 +1,3 @@
-<?php
-require(dirname(__FILE__)."/includes/turbolinks.php");
-?>
-
-<?php if (!is_ajax()): ?>
-
 <!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head>
@@ -47,7 +41,5 @@ require(dirname(__FILE__)."/includes/turbolinks.php");
 			<?php html5blank_nav(); ?>
 		</nav>
 		<!-- /nav -->
-
-<?php endif; ?>
 
 		<div class="wrapper">

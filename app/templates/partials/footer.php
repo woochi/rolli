@@ -12,8 +12,6 @@
 
 		</div>
 
-<?php if (!is_ajax()): ?>
-
 		<?php wp_footer(); ?>
 		<script>
     // conditionizr.com
@@ -36,4 +34,3 @@
 
 	</body>
 </html>
-<?php endif; ?>
