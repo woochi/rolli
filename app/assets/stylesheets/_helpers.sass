@@ -7,3 +7,14 @@
 @mixin uppercase($spacing: 0)
   text-transform: uppercase
   letter-spacing: $spacing
+
+.hidden
+  display: none
+
+@mixin keyframes($animation-name)
+  @-webkit-keyframes #{$animation-name}
+    @content
+  @-moz-keyframes #{$animation-name}
+    @content
+  @keyframes #{$animation-name}
+    @content

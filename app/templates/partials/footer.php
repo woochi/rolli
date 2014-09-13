@@ -10,7 +10,12 @@
 			</footer>
 			<!-- /footer -->
 
-		</div>
+			<!-- Sidebar navigation -->
+		</div> <!-- /content -->
+        </div> <!-- /content wrapper -->
+        <?php get_template_part('navigation', 'sidebar'); ?>
+        <div class="overlay-mask"></div>
+        </div> <!-- /wrapper -->
 
 		<?php wp_footer(); ?>
 		<script>

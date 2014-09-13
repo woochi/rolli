@@ -1,69 +1,19 @@
 .hero
-  position: relative
-  width: 100%
   height: 100%
-  padding: rhythm(4) 0 0
-  background-color: #222
-  background-repeat: no-repeat
-  background-size: cover
 
 .hero-content
-  padding: rhythm(1) 5%
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  width: rhythm(28)
+  height: rhythm(7)
+  margin: auto
   text-align: center
 
 .hero-title
-  +adjust-font-size-to(30px, 1.5)
-  display: none
-  margin: 0
-
-  .hero &
-    color: $white
+  +adjust-font-size-to(68px)
 
 .hero-subtitle
-  +adjust-font-size-to(16px, 1)
-  display: none
-  margin: 0
-  font-family: $serif-font-family
-  font-style: italic
-
-  .hero &
-    color: rgba($white, 0.5)
-
-@media #{$medium-up}
-
-  .hero-content
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    width: rhythm(20)
-    height: rhythm(7)
-    margin: auto
-    padding: 0
-
-    &.pull-bottom-left
-      margin-left: rhythm(2)
-      margin-bottom: rhythm(2)
-      text-align: left
-
-  .hero-title
-    +adjust-font-size-to(44px, 2)
-    margin-bottom: rhythm(0.5)
-
-  .hero-subtitle
-    +adjust-font-size-to(18px, 1.25)
-
-@media #{$large-up}
-
-  .hero-content
-
-    &.pull-bottom-left
-      margin-left: rhythm(3)
-      margin-bottom: rhythm(3)
-
-  .hero-title
-    +adjust-font-size-to(56px, 2)
-
-  .hero-subtitle
-    +adjust-font-size-to(20px, 1.25)
+  +adjust-font-size-to(22px, 1.5)

@@ -1,34 +1,22 @@
 Bacon = require("bacon")
+Helpers = require("./helpers.coffee")
+velocity = require("velocity")
+require("velocity.ui")
 
 getDocumentHeight = -> $(document).height()
 
 Sidebar =
 
   initialize: ->
-    scrolls = $(document).asEventStream("scroll")
-      .debounceImmediate(100)
-    opens = $(".open-nav").asEventStream("click")
-      .filter((e) ->
-        e.stopImmediatePropagation()
-        !$("body").hasClass("nav-open")
-      ).map(true)
-    closes = $(".wrapper").asEventStream("click")
-      .map(false)
-
-    navOpen = opens.merge(closes).merge(scrolls.map(false))
-      .skipDuplicates()
-      .toProperty($("body").hasClass("nav-open"))
-    navCloses = navOpen.changes().filter((open) -> !open)
-
-    navOpen.onValue (open) ->
-      $("body").toggleClass "nav-open", open
-      if open
-        resizes = $(window).asEventStream("resize").takeUntil(navCloses).debounce(500)
-        resizes.onEnd -> console.log "ENDED"
-        resizes.map(getDocumentHeight)
-          .skipDuplicates()
-          .toProperty(getDocumentHeight())
-          .onValue (height) ->
-            $(".nav").height height
+    open = $(".sidebar-toggle").asEventStream("click").map(true)
+    close = $(".overlay-mask").asEventStream("click").map(false)
+    sidebarOpen = open.merge(close).toProperty(false)
+    sidebarOpen.changes().onValue (isOpen) ->
+      direction = if isOpen then "opening" else "closing"
+      body = $("body")
+      body.addClass "sidebar-#{direction}"
+      body.toggleClass("sidebar-open", isOpen)
+      body.one Helpers.transitionend(), ->
+        body.removeClass("sidebar-#{direction}")
 
 module.exports = Sidebar

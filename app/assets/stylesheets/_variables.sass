@@ -1,5 +1,5 @@
 $base-font-size: 16px
-$base-line-height: 30px
+$base-line-height: 26px
 
 $rhythm-unit: "rem"
 $rem-with-px-fallback: "false"
@@ -31,9 +31,9 @@ $header-font-style: normal
 $header-font-color: #222
 $header-text-rendering: optimizeLegibility
 
-$h1-font-size: 32px
-$h2-font-size: 26px
-$h3-font-size: 22px
+$h1-font-size: 38px
+$h2-font-size: 32px
+$h3-font-size: 26px
 $h4-font-size: 20px
 $h5-font-size: 18px
 $h6-font-size: 16px
@@ -54,9 +54,16 @@ $input-min-width: rhythm(10)
 
 // Sidebar
 
-$nav-width: rhythm(9)
-$nav-background: $black
+$sidebar-width: rhythm(11)
+$sidebar-background: $white
 
 // Z-indices
 
-$zindex-nav-bar: 100
+$zindex-navigation: 50
+$zindex-navigation-sticky: 60
+$zindex-sidebar: 100
+$zindex-overlay-mask: 110
+
+// Animations and transitions
+
+$transition-duration: 450ms

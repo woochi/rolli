@@ -63,28 +63,11 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 // HTML5 Blank navigation
-function html5blank_nav()
+function html5blank_nav($custom_options = array())
 {
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
+    $defaults = array();
+    $options = array_merge($defaults, $custom_options);
+    wp_nav_menu($options);
 }
 
 // Load HTML5 Blank scripts (footer.php)
@@ -96,7 +79,7 @@ function html5blank_scripts()
       wp_register_script('jquery', get_template_directory_uri() . '/javascripts/jquery.js', array(), '2.1.1', true); // Conditionizr
       wp_enqueue_script('jquery'); // Enqueue it!
 
-    	wp_register_script('conditionizr', get_template_directory_uri() . '/javascripts/conditionizr.js', array(), '4.3.0', true); // Conditionizr
+      wp_register_script('conditionizr', get_template_directory_uri() . '/javascripts/conditionizr.js', array(), '4.3.0', true); // Conditionizr
       wp_enqueue_script('conditionizr'); // Enqueue it!
 
       wp_register_script('modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array(), '2.7.1', true); // Modernizr
@@ -129,7 +112,7 @@ function register_html5_menu()
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
         'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
+        'sticky-menu' => __('Sticky Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
     ));
 }
 

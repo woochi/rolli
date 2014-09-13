@@ -1,22 +1,18 @@
-<?php
-/*
-Template Name: Simple
-*/
-?>
-
 <?php get_header(); ?>
 
-<main>
+<main role="main">
 
-	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+  
+  <?php the_content(); ?>
 
-			<?php the_content(); ?>
+<?php endwhile; ?>
+<?php else: ?>
 
-	<?php endwhile; ?>
-	<?php endif; ?>
+  <!-- Empty content-->
 
-	</section>
-	<!-- /section -->
+<?php endif; ?>
+
 </main>
 
 <?php get_footer(); ?>
