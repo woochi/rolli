@@ -1,9 +1,5 @@
 Bacon = require("bacon")
 Helpers = require("./helpers.coffee")
-velocity = require("velocity")
-require("velocity.ui")
-
-getDocumentHeight = -> $(document).height()
 
 Sidebar =
 

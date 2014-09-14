@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: Simple
+*/
+?>
+
 <?php get_header(); ?>
 
 <main role="main">

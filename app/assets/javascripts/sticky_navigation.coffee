@@ -19,7 +19,7 @@ StickyNavigation =
       .skipDuplicates()
     isBelowHeader = scroll
       .filter(isScrollingUp)
-      .map((e) -> content.scrollTop() > startingOffset)
+      .map((e) -> content.scrollTop() > 200)
       .skipDuplicates()
       .toProperty()
 

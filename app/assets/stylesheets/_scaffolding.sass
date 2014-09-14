@@ -4,11 +4,11 @@ body
 .wrapper
   +perspective(2000px)
   +perspective-origin(0% 50%)
-  -webkit-transition: -webkit-transform $transition-duration
-  -moz-transition: -moz-transform $transition-duration
-  -ms-transition: -ms-transform $transition-duration
-  -o-transition: -o-transform $transition-duration
-  transition: transform $transition-duration
+  -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
+  -moz-transition: -moz-transform ease-out-quint() $transition-duration
+  -ms-transition: -ms-transform ease-out-quint() $transition-duration
+  -o-transition: -o-transform ease-out-quint() $transition-duration
+  transition: transform ease-out-quint() $transition-duration
   position: relative
   z-index: 1
   height: 100%
@@ -30,7 +30,7 @@ main
   height: 100%
 
 .overlay-mask
-  +transition(opacity $transition-duration)
+  +transition(opacity ease-out-quint() $transition-duration)
   display: none
   position: absolute
   left: 0
