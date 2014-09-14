@@ -20,7 +20,7 @@
     <!-- <?php get_template_part('pagination'); ?> -->
 
 		<div class="wrapper">
-      <?php get_template_part('navigation', 'sticky'); ?>
       <div class="content-wrapper">
+        <?php get_template_part('navigation', 'sticky'); ?>
         <div class="content">
 		      <?php get_template_part('navigation'); ?>
