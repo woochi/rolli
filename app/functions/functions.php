@@ -235,7 +235,7 @@ function html5wp_custom_post($length)
 }
 
 // Create the Custom Excerpts callback
-function html5wp_excerpt($length_callback = '', $more_callback = '')
+function html5wp_excerpt($class_name = '', $length_callback = '', $more_callback = '')
 {
     global $post;
     if (function_exists($length_callback)) {
@@ -247,7 +247,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
     $output = get_the_excerpt();
     $output = apply_filters('wptexturize', $output);
     $output = apply_filters('convert_chars', $output);
-    $output = '<p>' . $output . '</p>';
+    $output = '<p class="' . $class_name . '">' . $output . '</p>';
     echo $output;
 }
 

@@ -4,22 +4,22 @@ body
 .wrapper
   +perspective(2000px)
   +perspective-origin(0% 50%)
-  -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
-  -moz-transition: -moz-transform ease-out-quint() $transition-duration
-  -ms-transition: -ms-transform ease-out-quint() $transition-duration
-  -o-transition: -o-transform ease-out-quint() $transition-duration
-  transition: transform ease-out-quint() $transition-duration
+  overflow: hidden
   position: relative
   z-index: 1
   height: 100%
   background: $body-background
 
+.content-wrapper
+  -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
+  -moz-transition: -moz-transform ease-out-quint() $transition-duration
+  -ms-transition: -ms-transform ease-out-quint() $transition-duration
+  -o-transition: -o-transform ease-out-quint() $transition-duration
+  transition: transform ease-out-quint() $transition-duration
+  height: 100%
+
   .sidebar-open &
     +transform(translate3d($sidebar-width * -1, 0, 0))
-
-.content-wrapper
-  overflow: hidden
-  height: 100%
 
 .content
   position: relative

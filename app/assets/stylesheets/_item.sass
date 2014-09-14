@@ -1,0 +1,31 @@
+$item-title-font-size: 32px
+$item-excerpt-font-size: 16px
+
+.item
+  margin: rhythm(1.5) 0
+
+.item-title
+  +adjust-font-size-to($item-title-font-size)
+  margin: 0
+  text-transform: none
+  letter-spacing: 0
+  font-weight: 500
+
+  .item:first-child &
+    +adjust-font-size-to(44px)
+
+.item-excerpt
+  +adjust-font-size-to($item-excerpt-font-size)
+  margin: 0
+
+  .item:first-child &
+    +adjust-font-size-to(24px, 1.5)
+
+.item-meta
+  margin: rhythm(0.5) 0
+
+.item-author
+  margin-right: rhythm(0.25)
+  text-transform: uppercase
+  letter-spacing: 1px
+  font-weight: 600
