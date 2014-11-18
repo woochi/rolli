@@ -4,7 +4,7 @@ Sidebar = require("./sidebar.coffee")
 StickyNavigation = require("./sticky_navigation.coffee")
 Parallax = require("./parallax.coffee")
 
-#Sidebar.initialize()
+Sidebar.initialize()
 #StickyNavigation.initialize()
 Parallax.initialize()
 

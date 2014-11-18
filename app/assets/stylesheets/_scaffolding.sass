@@ -8,32 +8,49 @@ body
   height: 100%
 
 .content-wrapper
-  +perspective(2000px)
-  +perspective-origin(0% 50%)
-  +transform-style(preserve-3d)
-  -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
-  -moz-transition: -moz-transform ease-out-quint() $transition-duration
-  -ms-transition: -ms-transform ease-out-quint() $transition-duration
-  -o-transition: -o-transform ease-out-quint() $transition-duration
-  transition: transform ease-out-quint() $transition-duration
   height: 100%
   background: $body-background
-
-  .sidebar-open &
-    +transform(translate3d($sidebar-width * -1, 0, 0))
 
 .content
   position: relative
   overflow-y: auto
   overflow-x: hidden
   height: 100%
+  z-index: $zindex-content
+
+  .sidebar-open &
+    will-change: transform
+    -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
+    -moz-transition: -moz-transform ease-out-quint() $transition-duration
+    -ms-transition: -ms-transform ease-out-quint() $transition-duration
+    -o-transition: -o-transform ease-out-quint() $transition-duration
+    transition: transform ease-out-quint() $transition-duration
+    +transform(translateX(0px))
+    overflow: hidden
+
+  .sidebar-open-active &
+    +transform(translateX($sidebar-width*-1))
+    overflow: hidden
+
+  .sidebar-close &
+    will-change: transform
+    -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
+    -moz-transition: -moz-transform ease-out-quint() $transition-duration
+    -ms-transition: -ms-transform ease-out-quint() $transition-duration
+    -o-transition: -o-transform ease-out-quint() $transition-duration
+    transition: transform ease-out-quint() $transition-duration
+    +transform(translateX($sidebar-width*-1))
+    overflow: hidden
+
+  .sidebar-close-active &
+    +transform(translateX(0px))
+    overflow: hidden
 
 main
   height: 100%
 
 .overlay-mask
   +transition(opacity ease-out-quint() $transition-duration)
-  display: none
   position: absolute
   left: 0
   top: 0
@@ -44,9 +61,19 @@ main
   opacity: 0
 
   .sidebar-open &
-    +animation(fadeIn $transition-duration both)
     display: block
+    will-change: opacity
+    opacity: 0.01
 
-  .sidebar-closing &
-    +animation(fadeOut $transition-duration both)
+  .sidebar-open-active &
     display: block
+    opacity: 1
+
+  .sidebar-close &
+    display: block
+    will-change: opacity
+    opacity: 1
+
+  .sidebar-close-active &
+    display: block
+    opacity: 0.01

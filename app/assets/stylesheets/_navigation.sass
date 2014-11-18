@@ -54,15 +54,6 @@ $nav-sticky-link-color-hover: $white
       color: $nav-sticky-link-color-hover
 
 .nav-sidebar
-  -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
-  -moz-transition: -moz-transform ease-out-quint() $transition-duration
-  -ms-transition: -ms-transform ease-out-quint() $transition-duration
-  -o-transition: -o-transform ease-out-quint() $transition-duration
-  transition: transform ease-out-quint() $transition-duration
-  +transform-origin(0%, 50%)
-  +transform(translate3d(100%, 0, 0) rotateY(50deg))
-  +transform-style(preserve-3d)
-  visibility: hidden
   position: absolute
   right: 0
   top: 0
@@ -70,12 +61,6 @@ $nav-sticky-link-color-hover: $white
   width: $sidebar-width
   height: 100%
   background: $white
-
-  .sidebar-open &, .sidebar-opening &, .sidebar-closing &
-    visibility: visible
-
-  .sidebar-open &
-    +transform(translate3d(100%, 0, 0) rotateY(0deg))
 
   .menu
     list-style: none
@@ -94,9 +79,9 @@ $nav-sticky-link-color-hover: $white
       color: $primary-color
 
 .sidebar-toggle
+  +uppercase(1px)
   +adjust-font-size-to($navigation-font-size)
   float: right
-  text-transform: uppercase
   font-weight: 600
 
   .has-image &
@@ -127,7 +112,25 @@ $nav-sticky-link-color-hover: $white
   padding: 0 rhythm(1.5)
   color: $text-color-alt
 
+.menu-item > a
+  +adjust-font-size-to(18px)
+  color: $white
+  padding: rhythm(0.25) 0
+
+  &:hover
+    border-bottom: 4px solid $green6
+
+  &:active
+    color: $grey1
+    border-bottom: 4px solid $green7
+
 @media #{$medium-up}
+
+  .nav-list
+    +inline-block-list()
+
+    .nav-header &
+      float: right
 
   .nav-header
     left: rhythm(1.5)
@@ -139,3 +142,7 @@ $nav-sticky-link-color-hover: $white
     a
       width: rhythm(6)
       height: rhythm(2)
+
+@media #{$large-up}
+
+
