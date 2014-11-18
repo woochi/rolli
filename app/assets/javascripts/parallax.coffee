@@ -36,6 +36,7 @@ Parallax =
       $contentNode.style["will-change"] = "opacity"
       $backgroundNode.style["will-change"] = "transform"
       $scroller.on "scroll", applyStyles
+      applyStyles()
 
     unfollowScroll = ->
       $contentNode.style["will-change"] = ""
