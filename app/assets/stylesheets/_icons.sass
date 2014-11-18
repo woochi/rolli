@@ -1,0 +1,49 @@
+%icon-bar
+  +transition(all 0.2s ease-in-out)
+  width: rhythm(0.8)
+  height: 3px
+  background: $black
+
+  .has-image &
+    background: $white
+
+%icon-bar-pseudo
+  +transform(translate3d(0,0,0))
+  content: ""
+  position: absolute
+
+.icon-menu
+  @extend %icon-bar
+  display: inline-block
+  vertical-align: middle
+  position: relative
+  margin: rhythm(0.44) 0
+  margin-left: rhythm(0.25)
+  float: right
+
+  .sidebar-open &
+    background-color: rgba($white, 0)
+
+  &::before
+    @extend %icon-bar
+    @extend %icon-bar-pseudo
+    top: -6px
+
+  a:hover &::before
+    +transform(translateY(-2px))
+
+  &::after
+    @extend %icon-bar
+    @extend %icon-bar-pseudo
+    bottom: -6px
+
+  a:hover &::after
+    +transform(translateY(2px))
+
+  .sidebar-open &::before, .sidebar-opening &::before
+    +transform(rotate(-45deg) scale(1.15))
+    top: 0
+
+  .sidebar-open &::after, .sidebar-opening &::after
+    +transform(rotate(45deg) scale(1.15))
+    bottom: 0

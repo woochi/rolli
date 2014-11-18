@@ -7,7 +7,8 @@ scrollingUp = ([previousPosition, offset], currentPosition) ->
 StickyNavigation =
 
   initialize: ->
-    nav = $(".nav-sticky")
+    nav = $(".nav-header").clone().toggleClass("nav-header nav-sticky")
+    $(".content-wrapper").prepend nav
     content = $(".content")
     scroll = content.asEventStream("scroll").throttle(200)
     startingOffset = $(".hero").height() - 400

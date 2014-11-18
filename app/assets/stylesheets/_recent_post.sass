@@ -1,0 +1,37 @@
+.recent-post-wrapper
+  background: $grey05
+  background-position: top center
+  background-size: cover
+
+.recent-post-link
+  display: block
+  padding: rhythm(2) 0
+
+  .has-image &
+    background: rgba($black, 0.3)
+
+.recent-post-list-header
+  +adjust-font-size-to(14px)
+  +trailing-border(1px, 1)
+  border-color: $grey5
+  text-transform: uppercase
+  letter-spacing: 1px
+  color: $white
+  font-weight: 600
+  color: $grey5
+
+.recent-post-list
+  list-style: none
+  padding: 0
+
+.recent-post
+
+.recent-post-title
+  @extend .item-title
+  font-weight
+  color: $white
+
+.recent-post-excerpt
+  @extend .item-excerpt
+  +adjust-font-size-to(18px)
+  color: $white

@@ -1,0 +1,91 @@
+.image-feature
+  @extend .feature
+
+.image-feature-content-wrap
+  @extend .feature-content-wrap
+
+.image-feature-content
+  @extend .feature-content
+
+.image-feature-media
+  width: 100%
+  height: rhythm(8)
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+
+.image-feature-title
+  @extend .feature-title
+
+.image-feature-content
+  @extend .feature-content
+
+.image-feature-annotation
+  @extend .feature-annotation
+
+@media #{$medium-up}
+
+  .image-feature-media
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+
+  .image-feature-content
+    $horizontal-offset: 5%
+    $vertical-offset: rhythm(3)
+    position: absolute
+    left: 0
+    right: 0
+    width: 80%
+    max-width: rhythm(22)
+    margin: 0 auto
+    padding: rhythm(1) rhythm(2)
+    background: $white
+    border-bottom: 5px solid $green6
+
+    &.e
+      right: 0
+
+    &.w
+      left: 0
+
+    &.n
+      top: 0
+
+    &.s
+      bottom: 0
+
+    &.se
+      bottom: $vertical-offset
+
+    &.sw
+      bottom: $vertical-offset
+
+    &.ne
+      top: $vertical-offset
+
+    &.nw
+      top: $vertical-offset
+
+@media #{$large-up}
+
+  .image-feature-content
+    $horizontal-offset: 5%
+    $vertical-offset: rhythm(3)
+    margin: 0
+    left: auto
+    right: auto
+
+    &.se
+      right: $horizontal-offset
+      bottom: $vertical-offset
+
+    &.sw
+      left: $horizontal-offset
+
+    &.ne
+      right: $horizontal-offset
+
+    &.nw
+      left: $horizontal-offset

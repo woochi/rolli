@@ -254,8 +254,7 @@ function html5wp_excerpt($class_name = '', $length_callback = '', $more_callback
 // Custom View Article link to Post
 function html5_blank_view_article($more)
 {
-    global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '';
 }
 
 // Remove Admin bar
@@ -367,6 +366,13 @@ remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
+function new_excerpt_more( $more ) {
+  global $post;
+  if ($post->post_type == 'testimonial'){
+    return '';
+  }
+}
+add_filter('excerpt_more', 'new_excerpt_more');
 // Add Filters
 add_filter('avatar_defaults', 'html5blankgravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
@@ -385,12 +391,25 @@ add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from 
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
 
+remove_filter( 'the_content', 'wpautop' );
+add_filter( 'the_content', 'wpautop' , 99);
+add_filter( 'the_content', 'shortcode_unautop', 100);
+
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
 
 // Shortcodes
 add_shortcode('html5_shortcode_demo', 'html5_shortcode_demo'); // You can place [html5_shortcode_demo] in Pages, Posts now.
 add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [html5_shortcode_demo_2] in Pages, Posts now.
+add_shortcode('rolli_recent_posts', 'rolli_recent_posts');
+add_shortcode('rolli_header', 'rolli_header');
+add_shortcode('rolli_quote', 'rolli_quote');
+add_shortcode('rolli-image-banner', 'rolli_image_banner');
+add_shortcode('rolli-footer', 'rolli_footer');
+add_shortcode('rolli-icon-button', 'rolli_icon_button');
+add_shortcode('rolli-feature', 'rolli_feature');
+add_shortcode('rolli-image-feature', 'rolli_image_feature');
+add_shortcode('rolli-icon-feature', 'rolli_icon_feature');
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
@@ -451,6 +470,191 @@ function html5_shortcode_demo($atts, $content = null)
 function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 {
     return '<h2>' . $content . '</h2>';
+}
+
+// Shortcode Demo with simple <h2> tag
+function rolli_recent_posts($atts) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
+{
+    $query = new WP_Query(
+        array( 'orderby' => 'date', 'posts_per_page' => '1')
+    );
+
+    while($query->have_posts()) : $query->the_post();
+        $style = "";
+        $wrapper_class_name = "recent-post-wrapper";
+        if (has_post_thumbnail()) {
+            $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+            $style .= 'background-image: url(' . $image . ');';
+            $wrapper_class_name .= " has-image";
+        }
+
+        $section = '<section class="' . $wrapper_class_name . '" style="' . $style . '">';
+        $section .= '<a class="recent-post-link" href="' . get_permalink() . '">';
+        $section .= '<div class="row"><div class="column medium-10 medium-centered">';
+        $section .= '<div class="recent-post-list-header">' . __('Latest from the blog', 'html5blank') . '</div>';
+        $section .= '<ul class="recent-post-list">';
+        $section .= '<li class="recent-post">';
+        $section .= '<h3 class="recent-post-title">' . get_the_title() . '</h3>';
+        $section .= '<div class="recent-post-excerpt">' . get_the_excerpt() . '</div>';
+        $section .= '</li>';
+        $section .= '</ul></div></div></a></section>';
+    endwhile;
+
+    return $section;
+}
+
+function rolli_header($atts, $content = "")
+{
+    $style = "";
+    $header_class_name = "hero";
+    if (has_post_thumbnail()) {
+        $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+        $style .= 'background-image: url(' . $image . ');';
+        $header_class_name .= " has-image";
+    }
+    $header = '<header class="'.$header_class_name.'">';
+    $header .= '<div class="hero-background" style="'.$style.'" data-0="transform:translateY(0px);" data-500="transform:translateY(100px);"></div>';
+    $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div></div>';
+    $header .= '<a class="scroll-down-button"></a>';
+    $header .= '</header>';
+    return $header;
+}
+
+function rolli_quote($atts, $content = "")
+{
+    $quote = '<blockquote class="feature-quote">' . $content . '</blockquote>';
+    return $quote;
+}
+
+function rolli_facebook_feed($atts, $content = "")
+{
+
+    return "";
+}
+
+function create_image_section($content, $background)
+{
+
+    $wrapper_class_name = "recent-post-wrapper has-image";
+    $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+    $style = 'background-image: url(' . $image . ');';
+
+    $section = '<section class="' . $wrapper_class_name . '" style="' . $style . '">';
+    $section .= '<a class="recent-post-link" href="' . get_permalink() . '">';
+    $section .= '<div class="row"><div class="column medium-10 medium-centered">';
+    $section .= '<div class="recent-post-list-header">' . __('Latest from the blog', 'html5blank') . '</div>';
+    $section .= '<ul class="recent-post-list">';
+    $section .= '<li class="recent-post">';
+    $section .= '<h3 class="recent-post-title">' . get_the_title() . '</h3>';
+    $section .= '<div class="recent-post-excerpt">' . get_the_excerpt() . '</div>';
+    $section .= '</li>';
+    $section .= '</ul></div></div></a></section>';
+
+    return $section;
+}
+
+function rolli_image_banner($atts, $content)
+{
+    $wrapper_class_name = "image-banner has-image";
+    $style = 'background-image: url(' . $atts["image"] . ');';
+
+    $section = '<section class="' . $wrapper_class_name . '" style="' . $style . '">';
+    $section .= '<div class="image-banner-content">';
+    $section .= '<div class="row"><div class="column medium-10 medium-centered">';
+    $section .= $content;
+    $section .= '</div></div></div></section>';
+
+    return $section;
+}
+
+function rolli_footer($atts, $content)
+{
+    if (!$content) {
+        $name = get_bloginfo("name");
+        $description = get_bloginfo("description");
+        $content = $name . " &mdash; " . $description;
+    }
+
+    $footer = "<footer class='footer'>";
+    $footer .= "<div class='row'>";
+    $footer .= "<div class='column medium-10 medium-centered'>";
+    $footer .= $content;
+    $footer .= "</div></div></footer>";
+    return $footer;
+}
+
+function rolli_icon_button($atts, $content)
+{
+    $icon = "";
+    ob_start();
+    get_template_part("images/inline", $atts["icon"] . ".svg");
+    $icon .= ob_get_contents();
+    ob_end_clean();
+
+    $href = $atts["href"];
+
+    $class_name = "";
+    if ($atts["class"]) {
+        $class_name = $atts["class"];
+    } else {
+        $class_name = "button";
+    }
+
+    $properties = "class='" . $class_name . "'";
+    if ($href) $properties .= " href='" . $href . "' target='_blank'";
+
+    $button = "<a " . $properties . ">";
+    $button .= $icon;
+    $button .= $content;
+    $button .= "</a>";
+    return $button;
+}
+
+function rolli_image_feature($atts, $content)
+{
+    $style = "background-image: url(".$atts['image'].")";
+    $align = $atts['align'];
+
+    $el = "<section class='image-feature'>";
+    $el .= "<div class='image-feature-media' style='".$style."'></div>";
+    $el .= "<div class='image-feature-content ".$align."'>";
+    $el .= $content;
+    $el .= "</div>";
+    $el .= "</section>";
+    return do_shortcode($el);
+}
+
+function rolli_icon_feature($atts, $content)
+{
+    $image = $atts['image'];
+
+    $el = "<section class='feature'>";
+    $el .= "<div class='feature-content-wrap'>";
+    $el .= "<div class='feature-content row'>";
+    $el .= "<div class='column small-6 medium-4 small-centered large-uncentered'>";
+    $el .= "<img class='feature-image' src='".$image."'>";
+    $el .= "</div>";
+    $el .= "<div class='column small-11 medium-8 large-8 small-centered large-uncentered'>";
+    $el .= $content;
+    $el .= "</div></div></div>";
+    $el .= "</section>";
+    return do_shortcode($el);
+}
+
+function rolli_feature($atts, $content)
+{
+    $attributes = "";
+    $id = $atts['id'];
+    if (id) {$attributes .= "id='".$id."'";};
+
+    $el = "<section class='feature' ".$attributes.">";
+    $el .= "<div class='feature-content-wrap'>";
+    $el .= "<div class='feature-content row'>";
+    $el .= "<div class='column small-11 medium-9 small-centered'>";
+    $el .= $content;
+    $el .= "</div></div></div>";
+    $el .= "</section>";
+    return do_shortcode($el);
 }
 
 ?>

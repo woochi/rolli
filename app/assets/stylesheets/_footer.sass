@@ -1,2 +1,13 @@
 .footer
-  display: none
+  padding: rhythm(1.5)
+  border-top: 1px solid $grey1
+  text-align: center
+  color: $grey5
+  font-family: $serif-font-family
+  font-style: italic
+
+@media #{$medium-up}
+
+  .footer
+    +adjust-font-size-to(16px, 1)
+    margin-top: rhythm(-4)

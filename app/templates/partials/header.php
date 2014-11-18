@@ -15,12 +15,17 @@
 		<?php wp_head(); ?>
 
 	</head>
-	<body <?php body_class(); ?>>
+  <?php
+    $body_class = "";
+    if (has_post_thumbnail() && !is_home()):
+      $body_class .= "has-image";
+    endif;
+  ?>
+	<body <?php body_class($body_class); ?>>
 
     <!-- <?php get_template_part('pagination'); ?> -->
 
 		<div class="wrapper">
       <div class="content-wrapper">
-        <?php get_template_part('navigation', 'sticky'); ?>
         <div class="content">
 		      <?php get_template_part('navigation'); ?>

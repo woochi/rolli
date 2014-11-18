@@ -17,29 +17,37 @@
 			<?php endif; ?>
 			<!-- /post thumbnail -->
 
-			<!-- post title -->
-			<h2 class="post-title">
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-			</h2>
-			<!-- /post title -->
+			<!-- row column -->
+			<div class="row"><div class="column medium-10 medium-centered">
 
-			<!-- post details -->
-			<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
-			<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-			<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-			<!-- /post details -->
+				<!-- post title -->
+				<h2 class="post-title">
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+				</h2>
+				<!-- /post title -->
 
-			<?php the_content(); // Dynamic Content ?>
+				<!-- post details -->
+				<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
+				<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
+				<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
+				<!-- /post details -->
 
-			<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+				<?php the_content(); // Dynamic Content ?>
 
-			<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
+				<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
 
-			<p><?php _e( 'This post was written by ', 'html5blank' ); the_author(); ?></p>
+				<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
 
-			<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+				<p><?php _e( 'This post was written by ', 'html5blank' ); the_author(); ?></p>
 
-			<?php comments_template(); ?>
+				<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+
+			</div></div>
+			<!-- /column /row -->
+
+			<div class="row"><div class="column medium-10 medium-centered">
+				<?php comments_template(); ?>
+			</div></div>
 
 		</article>
 		<!-- /article -->
@@ -62,6 +70,6 @@
 	<!-- /section -->
 	</main>
 
-<?php get_sidebar(); ?>
+<?php //get_sidebar(); ?>
 
 <?php get_footer(); ?>

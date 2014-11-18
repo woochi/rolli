@@ -8,7 +8,9 @@
     "jquery": "./vendor/javascripts/jquery.js",
     "velocity": "./vendor/javascripts/velocity.js",
     "velocity.ui": "./vendor/javascripts/velocity.ui.js",
-    "bacon": "./vendor/javascripts/bacon.js"
+    "bacon": "./vendor/javascripts/bacon.js",
+    "rx": "./vendor/javascripts/rx.all.js",
+    "skrollr": "./vendor/javascripts/skrollr.js"
   },
   "browserify-shim": {
     "jquery": "$"

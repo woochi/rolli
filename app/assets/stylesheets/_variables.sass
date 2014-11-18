@@ -1,20 +1,41 @@
 $base-font-size: 16px
-$base-line-height: 26px
+$base-line-height: 30px
 
 $rhythm-unit: "rem"
-$rem-with-px-fallback: "false"
+$rem-with-px-fallback: true
+
+$global-radius: 4px
 
 // Colors
-$white: #FFF
-$gray: #AAA
 $black: #000
+$grey9: #1A1A1A
+$grey8: #333
+$grey7: #4D4D4D
+$grey6: #666
+$grey5: #808080
+$grey4: #999
+$grey3: #B3B3B3
+$grey2: #CCC
+$grey1: #E6E6E6
+$grey05: #F5F5F5
+$white: #FFF
 
-$green: green
+$green05: #e7f8ef
+$green1: #daf4e7
+$green2: #b3e7cd
+$green3: #8ddbb3
+$green4: #66cf9a
+$green5: #7AC673
+$green6: saturate(#319e67, 10%)
+$green7: #25774d
+$green8: #195034
+$green9: #0d291b
+
 $red: red
 $orange: orange
 $cyan: cyan
 
-$primary-color: $black
+$primary-color: $green5
 $body-background: $white
 
 // Typography
@@ -31,7 +52,7 @@ $font-smoothing: antialiased
 
 // Headers
 $header-font-family: "Montserrat", serif
-$header-font-weight: 600
+$header-font-weight: 400
 $header-font-style: normal
 $header-font-color: #222
 $header-text-rendering: optimizeLegibility
@@ -48,7 +69,7 @@ $h6-font-size: 16px
 $link-color:          $text-color
 $link-color-hover:    $link-color
 $link-color-active:   $link-color-hover
-$link-color-visited:  $link-color
+$link-color-visited:  null
 $link-color-focus:    $link-color-hover
 
 $link-decoration: none
@@ -64,6 +85,7 @@ $sidebar-background: $white
 
 // Z-indices
 
+$zindex-content: 10
 $zindex-navigation: 50
 $zindex-navigation-sticky: 60
 $zindex-sidebar: 100
@@ -71,5 +93,6 @@ $zindex-overlay-mask: 110
 
 // Animations and transitions
 
-$transition-easing: ease-out-quint
-$transition-duration: 500ms
+$transition-easing: ease-out-quad
+$transition-duration: 600ms
+

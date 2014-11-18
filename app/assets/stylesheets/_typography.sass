@@ -7,44 +7,38 @@ body
   font: #{$base-font-size}/#{$base-line-height} $base-font-family
   color: $text-color
   overflow-x: hidden
-  -webkit-font-smoothing: antialiased
 
 %header
-  font-family: $header-font-family
+  margin: rhythm(1, $h6-font-size) 0
+  font-family: $base-font-family
   font-weight: $header-font-weight
   color: $header-font-color
-  text-transform: uppercase
-  letter-spacing: 3px
+  text-rendering: $header-text-rendering
+  +uppercase(1px)
 
 h1
   @extend %header
   +adjust-font-size-to($h1-font-size, 1.75)
-  margin: 0 0 rhythm(1, $h1-font-size)
 
 h2
   @extend %header
   +adjust-font-size-to($h2-font-size, 1.5)
-  margin: 0 0 rhythm(1.25, $h2-font-size)
 
 h3
   @extend %header
   +adjust-font-size-to($h3-font-size, 1.5)
-  margin: 0 0 rhythm(1, $h3-font-size)
 
 h4
   @extend %header
   +adjust-font-size-to($h4-font-size)
-  margin: 0 0 rhythm(1, $h4-font-size)
 
 h5
   @extend %header
   +adjust-font-size-to($h5-font-size)
-  margin: 0 0 rhythm(1, $h5-font-size)
 
 h6
   @extend %header
   +adjust-font-size-to($h6-font-size)
-  margin: 0 0 rhythm(1, $h6-font-size)
 
 
 // Links
@@ -58,12 +52,33 @@ a
 
 p
   @extend %default-margin
+  font-size: inherit
+  line-height: inherit
+
+%quote
+  +adjust-font-size-to(42px, 1)
+  vertical-align: rhythm(-0.5)
+
+blockquote
+  @extend %default-margin
+  padding: 0
+  border: none
+  font-family: $serif-font-family
+  font-style: italic
+  quotes: "\201C""\201D""\2018""\2019"
+  text-indent: rhythm(-0.8)
+
+  &::before
+    @extend %quote
+    content: open-quote
+
+  p
+    display: inline
 
 // Inline styles
 
 .uppercase
-  text-transform: uppercase
-  letter-spacing: 1px
+  +uppercase(1px)
 
 .nowrap
   white-space: nowrap
@@ -79,11 +94,10 @@ li, dd
 // Rules
 
 hr
-  @extend %default-margin
   height: 0
-  margin-top: -1px
+  margin: rhythm(1) 0 rhythm(2)
   border: none
-  border-top: 1px solid $black
+  border-top: 1px solid $grey2
 
   &.content-separator
     margin: rhythm(2) 0
@@ -92,8 +106,20 @@ hr
 
 // Images and videos
 
+img
+  max-width: 100%
+
 video
   width: 100%
   min-height: rhythm(13)
 
-@media #{$large-up}
+@media #{$medium-up}
+
+  body
+    +adjust-font-size-to(17px, 1)
+
+  .intro
+    +adjust-font-size-to(17px, 1)
+
+  .medium-nowrap
+    white-space: nowrap

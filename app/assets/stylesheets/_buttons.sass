@@ -1,12 +1,91 @@
-.button
-  +rhythm-borders(2px, 0.5)
+%button
+  +user-select(none)
+  +adjust-font-size-to(14px, 1)
+  +transition(color 0.2s ease-out-quint(), background-color 0.2s ease-out-quint(), border-color 0.2s ease-out-quint())
+  +uppercase(1px)
+  display: inline-block
   margin: rhythm(0.25) 0
-  padding-left: rhythm(0.75)
-  padding-right: rhythm(0.75)
-  border-color: $link-color
-  border-radius: rhythm(1.5)
+  border-radius: 2px
   font-weight: $base-font-weight
-  background: none
+  text-align: center
+  width: 100%
+
+.button
+  @extend %button
+  +rhythm-borders(2px, 0.25)
+  border-width: 2px
+  padding-left: rhythm(0.5)
+  padding-right: rhythm(0.5)
+  border-color: $green6
+  color: $green6
+
+  &:hover
+    background: $green7
+    border-color: $green7
+    color: $white
+
+  &:active
+    background: $green8
+    border-color: $green8
+    color: $white
 
 button
   @extend .button
+
+.button-primary
+  @extend %button
+  padding: rhythm(0.25) rhythm(0.5)
+  background: $green6
+  color: $white
+
+  &:hover
+    background: $green7
+    color: $white
+
+  &:active
+    background: $green8
+
+.button-list
+  @extend .inline-list
+
+  > li
+    float: none
+
+.svg-icon
+  +transition(fill 0.2s ease-out-quint())
+  display: inline-block
+  vertical-align: -3px
+  width: $base-font-size
+  height: $base-font-size
+  margin-right: rhythm(0.25)
+  fill: $green6
+
+  .button:hover &
+    fill: $white
+
+  .button:active &
+    fill: $white
+
+  .button-primary &
+    fill: $white
+
+@media #{$medium-up}
+
+  %button
+    +adjust-font-size-to(15px, 1)
+    width: auto
+
+  .button
+    +rhythm-borders(2px, 0.4)
+    margin: rhythm(0.05) 0
+    padding-left: rhythm(0.75)
+    padding-right: rhythm(0.75)
+
+  .button-primary
+    margin: rhythm(0.05) 0
+    padding: rhythm(0.4) rhythm(0.75)
+
+  .button-list
+
+    > li
+      float: left
