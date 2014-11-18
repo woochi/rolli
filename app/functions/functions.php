@@ -62,10 +62,9 @@ if (function_exists('add_theme_support'))
 	Functions
 \*------------------------------------*/
 
-// HTML5 Blank navigation
-function html5blank_nav($custom_options = array())
+// Rolli navigation
+function rolli_nav($custom_options = array())
 {
-    /*
     $defaults = array(
         'theme_location'  => 'header-menu',
         'menu'            => '',
@@ -84,10 +83,34 @@ function html5blank_nav($custom_options = array())
         'depth'           => 0,
         'walker'          => ''
     );
-    */
-    $defaults = array('theme_location'  => 'header-menu');
     $options = array_merge($defaults, $custom_options);
-    wp_nav_menu($options);
+    $locations = get_nav_menu_locations();
+    $menu_name = $options['theme_location'];
+    $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+    $items = wp_get_nav_menu_items($menu->term_id);
+    $collapsable = $options['collapsable'];
+
+    if (!$collapsable)
+    {
+        wp_nav_menu($options);
+    }
+    else if (sizeof($items) < 4)
+    {
+        echo rolli_sidebar_toggle("show-for-small-only");
+        wp_nav_menu($options);
+    }
+    else
+    {
+        echo rolli_sidebar_toggle();
+    }
+}
+
+function rolli_sidebar_toggle($class_name = "")
+{
+    $class_name = join(" ", array("sidebar-toggle", $class_name));
+    $sidebar_toggle = '<a class="'.$class_name.'">';
+    $sidebar_toggle .= '<span class="icon-menu"></span>Menu</a>';
+    return $sidebar_toggle;
 }
 
 // Load HTML5 Blank scripts (footer.php)

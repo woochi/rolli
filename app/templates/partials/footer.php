@@ -1,10 +1,8 @@
 
 			<!-- Sidebar navigation -->
-		</div> <!-- /content -->
-        <?php get_template_part('navigation', 'sidebar'); ?>
-        <div class="overlay-mask"></div>
-        </div> <!-- /content wrapper -->
-        </div> <!-- /wrapper -->
+		  </div> <!-- /content -->
+    </div> <!-- /content wrapper -->
+    </div> <!-- /wrapper -->
 
 		<?php wp_footer(); ?>
 		<script>
