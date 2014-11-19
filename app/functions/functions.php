@@ -640,8 +640,10 @@ function rolli_image_feature($atts, $content)
 
     $el = "<section class='image-feature'>";
     $el .= "<div class='image-feature-media' style='".$style."'></div>";
-    $el .= "<div class='image-feature-content ".$align."'>";
+    $el .= "<div class='image-feature-content row ".$align."'>";
+    $el .= "<div class='column small-11 medium-12 small-centered'>";
     $el .= $content;
+    $el .= "</div>";
     $el .= "</div>";
     $el .= "</section>";
     return do_shortcode($el);
