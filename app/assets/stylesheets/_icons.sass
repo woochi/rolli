@@ -1,19 +1,19 @@
 %icon-bar
-  +transition(all 0.2s ease-in-out)
   width: rhythm(0.8)
   height: 3px
-  background: $black
+  background-color: $black
 
   .has-image &
-    background: $white
+    background-color: $white
 
 %icon-bar-pseudo
-  +transform(translate3d(0,0,0))
+  +transition(transform 0.2s ease-in-out)
   content: ""
   position: absolute
 
 .icon-menu
   @extend %icon-bar
+  +transition(background-color 0.2s ease-in-out)
   display: inline-block
   vertical-align: middle
   position: relative
@@ -21,29 +21,56 @@
   margin-left: rhythm(0.25)
   float: right
 
-  .sidebar-open &
+  .sidebar-open &, .sidebar-open-active &
+    background-color: rgba($white, 0)
+
+  .sidebar-close &, .sidebar-close-active &
     background-color: rgba($white, 0)
 
   &::before
     @extend %icon-bar
     @extend %icon-bar-pseudo
-    top: -6px
-
-  a:hover &::before
-    +transform(translateY(-2px))
+    +transform(translateY(-6px))
 
   &::after
     @extend %icon-bar
     @extend %icon-bar-pseudo
-    bottom: -6px
+    +transform(translateY(6px))
+
+  a:hover &::before
+    +transform(translateY(-8px))
 
   a:hover &::after
-    +transform(translateY(2px))
+    +transform(translateY(8px))
 
-  .sidebar-open &::before, .sidebar-opening &::before
-    +transform(rotate(-45deg) scale(1.15))
-    top: 0
+.icon-menu::before
 
-  .sidebar-open &::after, .sidebar-opening &::after
-    +transform(rotate(45deg) scale(1.15))
-    bottom: 0
+  .sidebar-open &
+    will-change: transform
+    +transform(rotate(0deg) translateY(-6px))
+
+  .sidebar-open-active &
+    +transform(rotate(45deg) translateY(0))
+
+  .sidebar-close &
+    will-change: transform
+    +transform(rotate(0deg) translateY(0))
+
+  .sidebar-close-active &
+    +transform(rotate(45deg) translateY(-6px))
+
+.icon-menu::after
+
+  .sidebar-open &
+    will-change: transform
+    +transform(rotate(0deg) translateY(6px))
+
+  .sidebar-open-active &
+    +transform(rotate(-45deg) translateY(0))
+
+  .sidebar-close &
+    will-change: transform
+    +transform(rotate(0deg) translateY(0))
+
+  .sidebar-close-active &
+    +transform(rotate(-45deg) translateY(6px))

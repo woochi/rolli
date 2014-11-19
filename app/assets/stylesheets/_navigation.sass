@@ -21,6 +21,14 @@ $nav-sticky-link-color-hover: $white
       +adjust-font-size-to($navigation-font-size)
       text-transform: uppercase
       font-weight: 600
+      color: $white
+
+    a:hover
+      border-bottom: 4px solid $green6
+
+    a:active
+      color: $grey1
+      border-bottom: 4px solid $green6
 
 .nav-sticky
   display: none
@@ -54,29 +62,37 @@ $nav-sticky-link-color-hover: $white
       color: $nav-sticky-link-color-hover
 
 .nav-sidebar
+  +transition(background-color $transition-duration ease-out-quint())
   position: absolute
   right: 0
   top: 0
   z-index: $zindex-sidebar
   width: $sidebar-width
   height: 100%
-  background: $white
+  background-color: $grey2
+
+  .sidebar-open-active &, .sidebar-close &
+    background-color: $white
+
+  .sidebar-close-active &
+    background-color: $grey2
 
   .menu
     list-style: none
     height: 100%
     margin: 0
-    padding: rhythm(3) 0
+    padding: rhythm(2) 0
 
     li
-      +adjust-font-size-to(30px)
+      +adjust-font-size-to(30px, 1.5)
 
     a
       display: block
-      padding: 0 rhythm(1.5)
+      padding: rhythm(0.25) rhythm(2)
+      font-weight: 300
 
     .current-menu-item a
-      color: $primary-color
+      color: $green6
 
 .sidebar-toggle
   +uppercase(1px)
@@ -112,25 +128,7 @@ $nav-sticky-link-color-hover: $white
   padding: 0 rhythm(1.5)
   color: $text-color-alt
 
-.menu-item > a
-  +adjust-font-size-to(18px)
-  color: $white
-  padding: rhythm(0.25) 0
-
-  &:hover
-    border-bottom: 4px solid $green6
-
-  &:active
-    color: $grey1
-    border-bottom: 4px solid $green7
-
 @media #{$medium-up}
-
-  .nav-list
-    +inline-block-list()
-
-    .nav-header &
-      float: right
 
   .nav-header
     left: rhythm(1.5)
@@ -142,7 +140,3 @@ $nav-sticky-link-color-hover: $white
     a
       width: rhythm(6)
       height: rhythm(2)
-
-@media #{$large-up}
-
-

@@ -3,12 +3,23 @@ Helpers = require("./helpers.coffee")
 Sidebar =
 
   initialize: ->
-    $body = $("body")
     $toggle = $(".sidebar-toggle")
+    return if $toggle.length is 0
+    $body = $("body")
     $content = $(".content")
     $mask = $("<div>").addClass("overlay-mask")
 
-    toggleSidebar = ->
+    bindToggles = ->
+      $mask.on "click", toggleSidebar
+      $toggle.on "click", toggleSidebar
+
+    unbindToggles = ->
+      $mask.off "click", toggleSidebar
+      $toggle.off "click", toggleSidebar
+
+    toggleSidebar = (e) ->
+      e.stopImmediatePropagation()
+      unbindToggles()
       if !$body.hasClass("sidebar-open-active")
         $content.append $mask
         $body.addClass("sidebar-open")
@@ -16,6 +27,7 @@ Sidebar =
           $body.addClass("sidebar-open-active")
           $body.one Helpers.transitionend(), ->
             $body.removeClass("sidebar-open")
+            bindToggles()
         , 0
       else
         $body.addClass("sidebar-close")
@@ -25,7 +37,8 @@ Sidebar =
           $body.removeClass("sidebar-close")
           $body.removeClass("sidebar-close-active")
           $mask.detach()
-    $mask.on "click", toggleSidebar
-    $toggle.on "click", toggleSidebar
+          bindToggles()
+
+    bindToggles()
 
 module.exports = Sidebar

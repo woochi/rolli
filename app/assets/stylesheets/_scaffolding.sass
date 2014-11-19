@@ -1,5 +1,5 @@
 body
-  background: $black
+  background: $body-background
 
 .wrapper
   overflow: hidden
@@ -13,18 +13,18 @@ body
 
 .content
   position: relative
+  z-index: $zindex-content
   overflow-y: auto
   overflow-x: hidden
   height: 100%
-  z-index: $zindex-content
 
   .sidebar-open &
     will-change: transform
-    -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
-    -moz-transition: -moz-transform ease-out-quint() $transition-duration
-    -ms-transition: -ms-transform ease-out-quint() $transition-duration
-    -o-transition: -o-transform ease-out-quint() $transition-duration
-    transition: transform ease-out-quint() $transition-duration
+    -webkit-transition: -webkit-transform ease-out-expo() $transition-duration
+    -moz-transition: -moz-transform ease-out-expo() $transition-duration
+    -ms-transition: -ms-transform ease-out-expo() $transition-duration
+    -o-transition: -o-transform ease-out-expo() $transition-duration
+    transition: transform ease-out-expo() $transition-duration
     +transform(translateX(0px))
     overflow: hidden
 
@@ -34,11 +34,11 @@ body
 
   .sidebar-close &
     will-change: transform
-    -webkit-transition: -webkit-transform ease-out-quint() $transition-duration
-    -moz-transition: -moz-transform ease-out-quint() $transition-duration
-    -ms-transition: -ms-transform ease-out-quint() $transition-duration
-    -o-transition: -o-transform ease-out-quint() $transition-duration
-    transition: transform ease-out-quint() $transition-duration
+    -webkit-transition: -webkit-transform ease-out-expo() $transition-duration
+    -moz-transition: -moz-transform ease-out-expo() $transition-duration
+    -ms-transition: -ms-transform ease-out-expo() $transition-duration
+    -o-transition: -o-transform ease-out-expo() $transition-duration
+    transition: transform ease-out-expo() $transition-duration
     +transform(translateX($sidebar-width*-1))
     overflow: hidden
 
@@ -50,7 +50,7 @@ main
   height: 100%
 
 .overlay-mask
-  +transition(opacity ease-out-quint() $transition-duration)
+  +transition(opacity ease-out-expo() $transition-duration)
   position: absolute
   left: 0
   top: 0
