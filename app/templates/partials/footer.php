@@ -1,6 +1,24 @@
+<?php
+  $default_footer_text_left = get_bloginfo('name');
+  $default_footer_text_right = get_bloginfo('description');
+  $default_footer_logo = get_template_directory_uri() . "/images/footer_logo.svg";
+  $footer_logo = get_theme_mod('rolli_theme_options[footer_logo]', $default_footer_logo);
+  $footer_text_left = get_theme_mod('rolli_theme_options[footer_text_left]', $default_footer_text_left);
+  $footer_text_right = get_theme_mod('rolli_theme_options[footer_text_right]', $default_footer_text_right);
+?>
 
 			<!-- Sidebar navigation -->
-		  </div> <!-- /content -->
+      <footer class="footer">
+        <div class="row">
+          <div class="colum small-11 medium-10 small-centered small-text-center">
+            <img class="footer-logo" url="<?php echo $footer_logo; ?>">
+            <?php echo $footer_text_left; ?>
+            <span class="show-for-small-only">&mdash;</span>
+            <?php echo $footer_text_right; ?>
+          </div>
+        </div>
+      </footer>
+		  </main></div> <!-- /content -->
     </div> <!-- /content wrapper -->
     </div> <!-- /wrapper -->
 

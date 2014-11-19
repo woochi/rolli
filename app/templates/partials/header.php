@@ -30,3 +30,4 @@
         <?php get_template_part('navigation', 'sidebar'); ?>
         <div class="content">
 		      <?php get_template_part('navigation'); ?>
+          <main role="main">

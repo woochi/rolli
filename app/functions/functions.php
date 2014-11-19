@@ -374,6 +374,9 @@ add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
+add_action('customize_register', 'rolli_customize_register'); // Customization menus
+add_action('wp_head', 'rolli_customize_css');
+add_action( 'customize_preview_init' , 'rolli_customize_live_preview');
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -428,7 +431,6 @@ add_shortcode('rolli_recent_posts', 'rolli_recent_posts');
 add_shortcode('rolli_header', 'rolli_header');
 add_shortcode('rolli_quote', 'rolli_quote');
 add_shortcode('rolli-image-banner', 'rolli_image_banner');
-add_shortcode('rolli-footer', 'rolli_footer');
 add_shortcode('rolli-icon-button', 'rolli_icon_button');
 add_shortcode('rolli-feature', 'rolli_feature');
 add_shortcode('rolli-image-feature', 'rolli_image_feature');
@@ -590,22 +592,6 @@ function rolli_image_banner($atts, $content)
     return $section;
 }
 
-function rolli_footer($atts, $content)
-{
-    if (!$content) {
-        $name = get_bloginfo("name");
-        $description = get_bloginfo("description");
-        $content = $name . " &mdash; " . $description;
-    }
-
-    $footer = "<footer class='footer'>";
-    $footer .= "<div class='row'>";
-    $footer .= "<div class='column medium-10 medium-centered'>";
-    $footer .= $content;
-    $footer .= "</div></div></footer>";
-    return $footer;
-}
-
 function rolli_icon_button($atts, $content)
 {
     $icon = "";
@@ -680,6 +666,114 @@ function rolli_feature($atts, $content)
     $el .= "</div></div></div>";
     $el .= "</section>";
     return do_shortcode($el);
+}
+
+function rolli_customize_register($wp_customize)
+{
+    // Customizable theme options
+    $wp_customize->add_setting('rolli_theme_options[header_logo]', array(
+        'default' => 'header_logo.svg',
+        'capability' => 'edit_theme_options',
+        'type' => 'option'
+    ));
+    $wp_customize->add_setting('rolli_theme_options[footer_logo]', array(
+        'default' => 'footer_logo.svg',
+        'capability' => 'edit_theme_options',
+        'type' => 'option'
+    ));
+    $wp_customize->add_setting('rolli_theme_options[footer_text_left]', array(
+        'default' => get_bloginfo("name"),
+        'capability' => 'edit_theme_options',
+        'type' => 'option'
+    ));
+    $wp_customize->add_setting('rolli_theme_options[footer_text_right]', array(
+        'default' => get_bloginfo("description"),
+        'capability' => 'edit_theme_options',
+        'type' => 'option'
+    ));
+
+    // Customization menus
+
+    // Logos
+    $wp_customize->add_section("rolli_theme_logos", array(
+        'title' => __('Site Logos', 'rolli'),
+        'description' => ''
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control(
+        $wp_customize,
+        'rolli_control_header_logo',
+        array(
+            'label' => __('Header Logo', 'rolli'),
+            'section' => 'rolli_theme_logos',
+            'settings' => 'rolli_theme_options[header_logo]',
+            'priority' => 1
+        )
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control(
+        $wp_customize,
+        'rolli_control_footer_logo',
+        array(
+            'label' => __('Footer Logo', 'rolli'),
+            'section' => 'rolli_theme_logos',
+            'settings' => 'rolli_theme_options[footer_logo]',
+            'priority' => 2
+        )
+    ));
+
+    // Texts
+    $wp_customize->add_section("rolli_theme_texts", array(
+        'title' => __('Site Texts', 'rolli'),
+        'description' => ''
+    ));
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        'rolli_control_footer_text_left',
+        array(
+            'label' => __('Footer Left Side Text', 'rolli'),
+            'section' => 'rolli_theme_texts',
+            'settings' => 'rolli_theme_options[footer_text_left]',
+            'priority' => 1
+        )
+    ));
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        'rolli_control_footer_text_right',
+        array(
+            'label' => __('Footer Right Side Text', 'rolli'),
+            'section' => 'rolli_theme_texts',
+            'settings' => 'rolli_theme_options[footer_text_right]',
+            'priority' => 2
+        )
+    ));
+}
+
+function rolli_customize_css()
+{
+    /*
+    ?>
+    <!--Customizer CSS-->
+    <style type="text/css">
+        <?php css_rule('#site-title a', 'color', 'header_textcolor', '#'); ?>
+        <?php css_rule('body', 'background-color', 'background_color', '#'); ?>
+        <?php css_rule('a', 'color', 'link_textcolor'); ?>
+    </style>
+    <!--/Customizer CSS-->
+    <?php
+    */
+}
+
+function rolli_customize_live_preview()
+{
+    /*
+    wp_enqueue_script('rolli_theme_customizer', get_template_directory_uri() . 'javascripts/theme_customizer.js', array('jquery', 'customize_preview'), true)
+    */
+}
+
+function css_rule($selector, $prop, $style)
+{
+    $rule = "";
+    $rule = sprintf('%s {$s:$s;}', $selector, $prop, $style);
+    return $rule;
 }
 
 ?>
