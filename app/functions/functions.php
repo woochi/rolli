@@ -159,6 +159,12 @@ function register_html5_menu()
     ));
 }
 
+function rolli_admin_styles()
+{
+    wp_register_style( 'rolli_admin', get_template_directory_uri() . '/admin.css' );
+    wp_enqueue_style( 'rolli_admin' );
+}
+
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
 function my_wp_nav_menu_args($args = '')
 {
@@ -366,6 +372,7 @@ function html5blankcomments($comment, $args, $depth)
 \*------------------------------------*/
 
 // Add Actions
+add_action( 'admin_enqueue_scripts', 'rolli_admin_styles' );
 add_action('init', 'html5blank_scripts'); // Add Custom Scripts to wp_head
 add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
@@ -423,6 +430,9 @@ add_filter( 'the_content', 'shortcode_unautop', 100);
 
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
+
+// Allow SVG uploads
+add_filter('upload_mimes', 'svg_mime_types');
 
 // Shortcodes
 add_shortcode('html5_shortcode_demo', 'html5_shortcode_demo'); // You can place [html5_shortcode_demo] in Pages, Posts now.
@@ -670,26 +680,21 @@ function rolli_feature($atts, $content)
 
 function rolli_customize_register($wp_customize)
 {
+
     // Customizable theme options
-    $wp_customize->add_setting('rolli_theme_options[header_logo]', array(
-        'default' => 'header_logo.svg',
-        'capability' => 'edit_theme_options',
-        'type' => 'option'
+    $wp_customize->add_setting('rolli_header_logo', array(
+        'default' => '',
+        'transport' => 'postMessage'
     ));
-    $wp_customize->add_setting('rolli_theme_options[footer_logo]', array(
-        'default' => 'footer_logo.svg',
-        'capability' => 'edit_theme_options',
-        'type' => 'option'
+    $wp_customize->add_setting('rolli_footer_logo', array(
+        'default' => '',
+        'transport' => 'postMessage'
     ));
     $wp_customize->add_setting('rolli_theme_options[footer_text_left]', array(
-        'default' => get_bloginfo("name"),
-        'capability' => 'edit_theme_options',
-        'type' => 'option'
+        'default' => get_bloginfo("name")
     ));
     $wp_customize->add_setting('rolli_theme_options[footer_text_right]', array(
-        'default' => get_bloginfo("description"),
-        'capability' => 'edit_theme_options',
-        'type' => 'option'
+        'default' => get_bloginfo("description")
     ));
 
     // Customization menus
@@ -701,21 +706,21 @@ function rolli_customize_register($wp_customize)
     ));
     $wp_customize->add_control(new WP_Customize_Image_Control(
         $wp_customize,
-        'rolli_control_header_logo',
+        'rolli_header_logo',
         array(
             'label' => __('Header Logo', 'rolli'),
             'section' => 'rolli_theme_logos',
-            'settings' => 'rolli_theme_options[header_logo]',
+            'settings' => 'rolli_header_logo',
             'priority' => 1
         )
     ));
     $wp_customize->add_control(new WP_Customize_Image_Control(
         $wp_customize,
-        'rolli_control_footer_logo',
+        'rolli_footer_logo',
         array(
             'label' => __('Footer Logo', 'rolli'),
             'section' => 'rolli_theme_logos',
-            'settings' => 'rolli_theme_options[footer_logo]',
+            'settings' => 'rolli_footer_logo',
             'priority' => 2
         )
     ));
@@ -764,9 +769,8 @@ function rolli_customize_css()
 
 function rolli_customize_live_preview()
 {
-    /*
-    wp_enqueue_script('rolli_theme_customizer', get_template_directory_uri() . 'javascripts/theme_customizer.js', array('jquery', 'customize_preview'), true)
-    */
+    wp_register_script('rolli_preview', get_template_directory_uri() . '/javascripts/preview.js', array('jquery'), '1.0.0', true); // Custom
+    wp_enqueue_script('rolli_preview');
 }
 
 function css_rule($selector, $prop, $style)
@@ -774,6 +778,12 @@ function css_rule($selector, $prop, $style)
     $rule = "";
     $rule = sprintf('%s {$s:$s;}', $selector, $prop, $style);
     return $rule;
+}
+
+function svg_mime_types( $mimes )
+{
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
 }
 
 ?>

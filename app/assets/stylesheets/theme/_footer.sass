@@ -1,0 +1,39 @@
+.footer
+  position: relative
+  border-top: 1px solid $grey1
+  background: $white
+  color: $grey6
+
+.footer-content
+  +grid-row()
+  max-width: none
+  overflow: visible
+
+.footer-logo
+  $size: rhythm(2)
+  position: absolute
+  left: 0
+  right: 0
+  top: $size*-0.5
+  width: $size + rhythm(0.5)
+  height: $size
+  margin: auto
+  background-size: auto 100%
+  background-repeat: no-repeat
+  background-position: center
+  opacity: 0.75
+  background-color: $white
+
+.footer-tagline
+  +uppercase(1px)
+  +adjust-font-size-to(14px)
+  padding: rhythm(1.5) 0
+
+@media #{$medium-up}
+
+  .footer
+    margin-top: rhythm(-4)
+
+  .footer-logo
+    display: inline-block
+    vertical-align: middle

@@ -11,22 +11,31 @@ module.exports = ( grunt ) ->
     sass:
       options:
         compass: true
-        loadPath: ["bower_components/foundation/scss"]
-      build:
+      theme:
+        options:
+          loadPath: ["bower_components/foundation/scss"]
         files:
-          "build/style.css": "app/assets/stylesheets/style.sass"
+          "build/style.css": "app/assets/stylesheets/theme/index.sass"
+      admin:
+        files:
+          "build/admin.css": "app/assets/stylesheets/admin/index.sass"
     cssmin:
       options:
         keepSpecialComments: 1
       compress:
-        files:
-            'build/style.css': ['build/style.css']
+        files: [
+          'build/style.css': ['build/style.css']
+          "build/admin.css": ["build/admin.css"]
+        ]
     browserify:
-      site:
+      options:
+        transform: ["coffeeify"]
+      theme:
         files:
           "build/javascripts/theme.js": ["app/assets/javascripts/theme.coffee"]
-        options:
-          transform: ["coffeeify"]
+      preview:
+        files:
+          "build/javascripts/preview.js": ["app/assets/javascripts/preview.coffee"]
     uglify:
       options:
         banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
@@ -34,6 +43,9 @@ module.exports = ( grunt ) ->
       dist:
         files:
           'build/javascripts/theme.js': 'build/javascripts/theme.js'
+      preview:
+        files:
+          'build/javascripts/preview.js': 'build/javascripts/preview.js'
     copy:
       build:
         files: [
@@ -48,14 +60,17 @@ module.exports = ( grunt ) ->
       options:
         livereload: true
       sass:
-        files: ["app/assets/stylesheets/**/*.sass", "app/assets/stylesheets/**/*.scss"]
-        tasks: ["sass"]
-      browserify:
+        files: ["app/assets/stylesheets/theme/**/*.sass", "app/assets/stylesheets/**/*.scss"]
+        tasks: ["sass:theme"]
+      scripts:
         files: ["app/assets/javascripts/**/*.coffee"]
         tasks: ["browserify"]
       php:
         files: ["app/templates/**/*.php", "app/functions/**/*.php", "app/includes/**/*.php"]
         tasks: ["copy"]
+      admin:
+        files: ["app/assets/stylesheets/admin/**/*.sass", "app/assets/stylesheets/admin/**/*.scss"]
+        tasks: ["sass:admin"]
     clean: ['build', "package"]
     zip:
       'package/talon.zip': ['build/**/*']
