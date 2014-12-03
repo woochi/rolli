@@ -11,7 +11,9 @@
       <footer class="footer">
         <div class="footer-content">
           <div class="column small-11 small-centered text-center">
-            <div class="footer-logo" style="background-image:url(<?php echo $footer_logo; ?>)"></div>
+            <div class="footer-logo-wrapper">
+              <img class="footer-logo" src="<?php echo $footer_logo; ?>">
+            </div>
             <div class="footer-tagline">
               <?php echo $footer_text_left; ?>
               &mdash;
