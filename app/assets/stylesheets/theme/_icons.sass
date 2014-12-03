@@ -45,32 +45,16 @@
 
 .icon-menu::before
 
-  .sidebar-open &
+  .sidebar-open, .sidebar-close
     will-change: transform
-    +transform(rotate(0deg) translateY(-6px))
 
   .sidebar-open-active &
-    +transform(rotate(45deg) translateY(0))
-
-  .sidebar-close &
-    will-change: transform
-    +transform(rotate(0deg) translateY(0))
-
-  .sidebar-close-active &
-    +transform(rotate(45deg) translateY(-6px))
+    +transform(rotate3d(0,0,1,45deg) translateY(0) scale(0.8))
 
 .icon-menu::after
 
-  .sidebar-open &
+  .sidebar-open, .sidebar-close
     will-change: transform
-    +transform(rotate(0deg) translateY(6px))
 
   .sidebar-open-active &
-    +transform(rotate(-45deg) translateY(0))
-
-  .sidebar-close &
-    will-change: transform
-    +transform(rotate(0deg) translateY(0))
-
-  .sidebar-close-active &
-    +transform(rotate(-45deg) translateY(6px))
+    +transform(rotate3d(0,0,1,-45deg) translateY(0) scale(0.8))
