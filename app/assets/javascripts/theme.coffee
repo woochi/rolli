@@ -8,7 +8,7 @@ ScrollButton = require("./scroll_button.coffee")
 
 Sidebar.initialize()
 #StickyNavigation.initialize()
-Parallax.initialize()
+Parallax.initialize() unless Modernizr.touch
 ScrollButton.initialize()
 
 Animate.hero()

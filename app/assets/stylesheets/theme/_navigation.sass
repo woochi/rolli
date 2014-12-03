@@ -86,12 +86,10 @@ $nav-sticky-link-color-hover: $white
     margin: 0
     padding: rhythm(2) 0
 
-    li
-      +adjust-font-size-to(30px, 1.5)
-
     a
+      +adjust-font-size-to(24px, 1)
       display: block
-      padding: rhythm(0.25) rhythm(2)
+      padding: rhythm(0.25) rhythm(1.5)
       font-weight: 300
 
     .current-menu-item a
@@ -165,8 +163,15 @@ $nav-sticky-link-color-hover: $white
     right: rhythm(2)
     top: rhythm(2)
 
+  .nav-sidebar
+    width: $sidebar-width-large
+
+    .menu a
+      +adjust-font-size-to(30px, 1.5)
+
   .logo
 
     a
       width: rhythm(12)
       height: rhythm(2.5)
+      padding: rhythm(0.25) rhythm(2)

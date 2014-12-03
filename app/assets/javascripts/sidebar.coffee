@@ -24,6 +24,7 @@ Sidebar =
       $body.addClass("sidebar-open-active")
 
     startClose = ->
+      console.log "CLOSE"
       $content.on transitionend, finishClose
       $body.addClass("sidebar-close-active")
 
@@ -34,6 +35,7 @@ Sidebar =
       $content.off transitionend, finishOpen
 
     finishClose = (e) ->
+      console.log "FINISH", e.target
       return unless e.target is $content[0]
       $body.removeClass("sidebar-close")
       $body.removeClass("sidebar-close-active")

@@ -12,6 +12,8 @@ body
   background: $body-background
 
 .content
+  overflow-scrolling: touch
+  -webkit-overflow-scrolling: touch
   position: relative
   z-index: $zindex-content
   overflow-y: auto
@@ -77,3 +79,16 @@ main
   .sidebar-close-active &
     display: block
     opacity: 0.01
+
+@media #{$medium-up}
+
+  .content
+
+    .sidebar-open-active &
+      +transform(translateX($sidebar-width-large*-1))
+
+    .sidebar-close &
+      +transform(translateX($sidebar-width-large*-1))
+
+    .sidebar-close-active &
+      +transform(translateX(0px))
