@@ -50,20 +50,25 @@
     color: $white
 
 .scroll-down-button
+  +transition(background-color 0.5s)
   display: none
   position: absolute
   bottom: rhythm(1)
   left: 0
   right: 0
-  width: rhythm(1)
-  height: rhythm(1)
+  width: rhythm(2)
+  height: rhythm(2)
   margin: auto
   background: url("images/caret_down_black.svg") center no-repeat
-  background-size: cover
+  background-size: 50% auto
+  border-radius: 50%
 
   .has-image &
     border-color: $white
     background-image: url("images/caret_down_white.svg")
+
+  &:active
+    background-color: $grey5
 
 @media #{$medium-up}
 

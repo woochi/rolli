@@ -10,7 +10,8 @@
     "velocity.ui": "./vendor/javascripts/velocity.ui.js",
     "bacon": "./vendor/javascripts/bacon.js",
     "rx": "./vendor/javascripts/rx.all.js",
-    "skrollr": "./vendor/javascripts/skrollr.js"
+    "skrollr": "./vendor/javascripts/skrollr.js",
+    "fastclick": "./vendor/javascripts/fastclick.js"
   },
   "browserify-shim": {
     "jquery": "$"
