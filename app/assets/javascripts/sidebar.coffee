@@ -9,6 +9,8 @@ Sidebar =
     $content = $(".content")
     $mask = $("<div>").addClass("overlay-mask")
 
+    transitionend = Helpers.transitionend()
+
     bindToggles = ->
       $mask.on "click", toggleSidebar
       $toggle.on "click", toggleSidebar
@@ -17,27 +19,39 @@ Sidebar =
       $mask.off "click", toggleSidebar
       $toggle.off "click", toggleSidebar
 
+    startOpen = ->
+      $content.on transitionend, finishOpen
+      $body.addClass("sidebar-open-active")
+
+    startClose = ->
+      $content.on transitionend, finishClose
+      $body.addClass("sidebar-close-active")
+
+    finishOpen = (e) ->
+      return unless e.target is $content[0]
+      $body.removeClass("sidebar-open")
+      bindToggles()
+      $content.off transitionend, finishOpen
+
+    finishClose = (e) ->
+      return unless e.target is $content[0]
+      $body.removeClass("sidebar-close")
+      $body.removeClass("sidebar-close-active")
+      $mask.detach()
+      bindToggles()
+      $content.off transitionend, finishClose
+
     toggleSidebar = (e) ->
       e.stopImmediatePropagation()
       unbindToggles()
       if !$body.hasClass("sidebar-open-active")
         $content.append $mask
         $body.addClass("sidebar-open")
-        setTimeout ->
-          $body.addClass("sidebar-open-active")
-          $body.one Helpers.transitionend(), ->
-            $body.removeClass("sidebar-open")
-            bindToggles()
-        , 0
+        setTimeout startOpen, 0
       else
         $body.addClass("sidebar-close")
         $body.removeClass("sidebar-open-active")
-        $body.addClass("sidebar-close-active")
-        $body.one Helpers.transitionend(), ->
-          $body.removeClass("sidebar-close")
-          $body.removeClass("sidebar-close-active")
-          $mask.detach()
-          bindToggles()
+        setTimeout startClose, 0
 
     bindToggles()
 
