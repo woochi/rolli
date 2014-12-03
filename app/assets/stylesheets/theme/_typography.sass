@@ -7,6 +7,7 @@ body
   font: #{$base-font-size}/#{$base-line-height} $base-font-family
   color: $text-color
   overflow-x: hidden
+  -webkit-font-smoothing: antialiased
 
 %header
   margin: rhythm(1, $h6-font-size) 0
@@ -47,6 +48,8 @@ a
   +link-colors($link-color, $link-color-hover, $link-color-active, $link-color-visited, $link-color-focus)
   text-decoration: $link-decoration
   cursor: pointer
+  color: $link-color
+  outline: 0 !important
 
 // Text blocks
 
