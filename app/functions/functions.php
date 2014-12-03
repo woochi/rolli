@@ -108,8 +108,8 @@ function rolli_nav($custom_options = array())
 function rolli_sidebar_toggle($class_name = "")
 {
     $class_name = join(" ", array("sidebar-toggle", $class_name));
-    $sidebar_toggle = '<a class="'.$class_name.'">';
-    $sidebar_toggle .= '<span class="icon-menu"></span>Menu</a>';
+    $sidebar_toggle = '<a class="'.$class_name.'" role="button" title="Avaa sivuvalikko">';
+    $sidebar_toggle .= '<span class="icon-menu"></span>Valikko</a>';
     return $sidebar_toggle;
 }
 
@@ -550,7 +550,7 @@ function rolli_header($atts, $content = "")
     $header = '<header class="'.$header_class_name.'">';
     $header .= '<div class="hero-background" style="'.$style.'" data-0="transform:translateY(0px);" data-500="transform:translateY(100px);"></div>';
     $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div></div>';
-    $header .= '<a class="scroll-down-button"></a>';
+    $header .= '<a class="scroll-down-button" role="button" title="Siirry alaspäin"></a>';
     $header .= '</header>';
     return $header;
 }
