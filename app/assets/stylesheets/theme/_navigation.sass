@@ -71,6 +71,9 @@ $nav-sticky-link-color-hover: $white
   height: 100%
   background-color: $grey2
 
+  .sidebar-open &, .sidebar-close &
+    will-change: background-color
+
   .sidebar-open-active &, .sidebar-close &
     background-color: $white
 
@@ -95,11 +98,21 @@ $nav-sticky-link-color-hover: $white
       color: $green6
 
 .sidebar-logo-wrapper
+  +transition(background-color $transition-duration ease-out-quint())
   position: relative
   width: rhythm(2)
   margin: rhythm(0.5) auto
   padding: 0 rhythm(0.25)
-  background-color: $white
+  background-color: $grey2
+
+  .sidebar-open &, .sidebar-close &
+    will-change: background-color
+
+  .sidebar-open-active &, .sidebar-close &
+    background-color: $white
+
+  .sidebar-close-active &
+    background-color: $grey2
 
 .sidebar-logo
   opacity: 0.5
