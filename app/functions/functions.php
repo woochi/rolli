@@ -655,7 +655,7 @@ function rolli_icon_feature($atts, $content)
     $el .= "<div class='column small-6 medium-4 small-centered large-uncentered'>";
     $el .= "<img class='feature-image' src='".$image."'>";
     $el .= "</div>";
-    $el .= "<div class='column small-11 medium-8 large-8 small-centered large-uncentered'>";
+    $el .= "<div class='column small-11 medium-8 large-7 large-push-1 small-centered large-uncentered'>";
     $el .= $content;
     $el .= "</div></div></div>";
     $el .= "</section>";
