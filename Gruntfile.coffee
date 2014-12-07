@@ -81,17 +81,15 @@ module.exports = ( grunt ) ->
           packageSpecific:
             'velocity':
               files: ["velocity.ui.js"]
-    deploy:
-      options:
-        src: "./build"
-        args: ["--verbose"]
-        exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'README.md', 'config.rb', '.jshintrc']
-        recursive: true
-        syncDestIgnoreExcl: true
+    rsync:
       production:
         options:
+          src: "build/"
           dest: "/var/www/wp-content/themes/rolli"
-          host: "root@rolli.org"
+          host: "root@128.199.42.152"
+          recursive: true
+          delete: true
 
   grunt.registerTask "default", ["clean", "bower", "browserify", "copy", "sass", "watch"]
   grunt.registerTask "package", ["clean", "bower", "browserify", "copy", "sass", "cssmin", "uglify", "zip"]
+  grunt.registerTask "deploy", ["clean", "bower", "browserify", "copy", "sass", "cssmin", "uglify", "rsync:production"]

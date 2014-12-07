@@ -36,6 +36,7 @@
     "grunt-contrib-sass": "*",
     "grunt-zip": "*",
     "bower": "*",
-    "grunt-bower": "*"
+    "grunt-bower": "*",
+    "grunt-rsync": "*"
   }
 }
