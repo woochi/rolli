@@ -54,7 +54,7 @@ module.exports = ( grunt ) ->
           {expand: true, flatten: true, src: ['app/includes/**'], dest: 'build/includes', filter: 'isFile'}
           {expand: true, flatten: true, cwd: "app/assets/", src: ['images/**/*'], dest: 'build/images', filter: "isFile"}
           {expand: true, flatten: true, cwd: "app/assets/", src: ['images/screenshot.png'], dest: 'build/'}
-          {expand: true, flatten: true, cwd: "vendor/javascripts", src: ['jquery.js', "conditionizr.js", "modernizr.js"], dest: 'build/javascripts'}
+          {expand: true, flatten: true, cwd: "vendor/javascripts", src: ['head.min.js'], dest: 'build/javascripts'}
         ]
     watch:
       options:

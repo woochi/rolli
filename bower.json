@@ -9,6 +9,7 @@
     "bacon": "0.7.19",
     "rxjs": "2.3",
     "skrollr": "0.6.29",
-    "fastclick": "1.0.3"
+    "fastclick": "1.0.3",
+    "headjs": "1.0.3"
   }
 }

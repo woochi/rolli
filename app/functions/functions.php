@@ -113,32 +113,21 @@ function rolli_sidebar_toggle($class_name = "")
     return $sidebar_toggle;
 }
 
-// Load HTML5 Blank scripts (footer.php)
-function html5blank_scripts()
+function script_uri($path = "")
+{
+    return (get_template_directory_uri() . '/javascripts/' . $path);
+}
+
+function rolli_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-      wp_deregister_script('jquery'); // Deregister WP default jQuery
-      wp_register_script('jquery', get_template_directory_uri() . '/javascripts/jquery.js', array(), '2.1.1', true); // Conditionizr
-      wp_enqueue_script('jquery'); // Enqueue it!
+        // Deregister WP default jQuery
+        wp_deregister_script('jquery');
 
-    	wp_register_script('conditionizr', get_template_directory_uri() . '/javascripts/conditionizr.js', array(), '4.3.0', true); // Conditionizr
-      wp_enqueue_script('conditionizr'); // Enqueue it!
-
-      wp_register_script('modernizr', get_template_directory_uri() . '/javascripts/modernizr.js', array(), '2.7.1', true); // Modernizr
-      wp_enqueue_script('modernizr'); // Enqueue it!
-
-      wp_register_script('html5blankscripts', get_template_directory_uri() . '/javascripts/theme.js', array('jquery'), '1.0.0', true); // Custom scripts
-      wp_enqueue_script('html5blankscripts'); // Enqueue it!
-    }
-}
-
-// Load HTML5 Blank conditional scripts
-function html5blank_conditional_scripts()
-{
-    if (is_page('pagenamehere')) {
-        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-        wp_enqueue_script('scriptname'); // Enqueue it!
+        // Register head.js for async script loading
+        wp_register_script('head.js', script_uri('head.min.js'));
+        wp_enqueue_script('head.js');
     }
 }
 
@@ -373,8 +362,7 @@ function html5blankcomments($comment, $args, $depth)
 
 // Add Actions
 add_action( 'admin_enqueue_scripts', 'rolli_admin_styles' );
-add_action('init', 'html5blank_scripts'); // Add Custom Scripts to wp_head
-add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
+add_action('init', 'rolli_scripts'); // Add Custom Scripts to wp_head
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
@@ -550,7 +538,7 @@ function rolli_header($atts, $content = "")
     $header = '<header class="'.$header_class_name.'">';
     $header .= '<div class="hero-background" style="'.$style.'" data-0="transform:translateY(0px);" data-500="transform:translateY(100px);"></div>';
     $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div></div>';
-    $header .= '<a class="scroll-down-button" role="button" title="Siirry alaspäin"></a>';
+    $header .= '<a class="scroll-down-button hidden" role="button" title="Siirry alaspäin"></a>';
     $header .= '</header>';
     return $header;
 }
