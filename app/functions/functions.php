@@ -122,8 +122,9 @@ function rolli_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-        // Deregister WP default jQuery
+        // Deregister default scripts
         wp_deregister_script('jquery');
+        wp_deregister_script('comment-reply');
 
         // Register head.js for async script loading
         wp_register_script('head.js', script_uri('head.min.js'));
