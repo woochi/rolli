@@ -6,7 +6,6 @@ exports.hero = ->
   transitionClass = "fade-in-down"
   transitionActiveClass = "#{transitionClass}-active"
 
-
   $elements = $(".hero-title, .hero-subtitle, .scroll-down-button")
   $elements.addClass(transitionClass)
   $elements.removeClass("hidden")
