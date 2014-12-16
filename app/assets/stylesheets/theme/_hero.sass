@@ -36,7 +36,6 @@
 .hero-title
   +adjust-font-size-to(24px)
   +uppercase(1px)
-  display: none
   margin-top: 0
   font-weight: 400
 
@@ -44,14 +43,13 @@
     color: $white
 
 .hero-subtitle
-  display: none
+  +transition-delay(0.1s)
 
   .has-image &
     color: $white
 
 .scroll-down-button
-  +transition(background-color 0.5s)
-  display: none
+  +transition-delay(0.3s)
   position: absolute
   bottom: rhythm(1)
   left: 0
@@ -66,9 +64,6 @@
   .has-image &
     border-color: $white
     background-image: url("images/caret_down_white.svg")
-
-  &:active
-    background-color: $grey5
 
 @media #{$medium-up}
 

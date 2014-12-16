@@ -1,5 +1,4 @@
-Rx = require("rx")
-velocity = require("velocity")
+$ = require("jquery")
 
 Parallax =
 

@@ -1,3 +1,16 @@
+capitalize = (text) ->
+	text[0].toUpperCase() + text.slice(1)
+
+prefixed = (feature) ->
+	if head.browser.webkit or head.browser.chrome
+		"Webkit#{capitalize(feature)}"
+	else if head.browser.ie
+		"ms#{capitalize(feature)}"
+	else if head.browser.opera
+		"O#{capitalize(feature)}"
+	else
+		feature
+
 Helpers =
 
 	animationstart: ->
@@ -6,7 +19,7 @@ Helpers =
 			'OAnimation' : 'oAnimationSart'
 			'msAnimation' : 'MSAnimationStart'
 			'animation' : 'animationstart'
-		animationStartNames[Modernizr.prefixed( 'animation' )]
+		animationStartNames[prefixed( 'animation' )]
 
 	animationend: ->
 		animationEndNames =
@@ -14,7 +27,7 @@ Helpers =
 			'OAnimation' : 'oAnimationEnd'
 			'msAnimation' : 'MSAnimationEnd'
 			'animation' : 'animationend'
-		animationEndNames[Modernizr.prefixed( 'animation' )]
+		animationEndNames[prefixed( 'animation' )]
 
 	animationiteration: ->
 		animationIterationNames =
@@ -22,15 +35,14 @@ Helpers =
 			'OAnimation' : 'oAnimationIteration'
 			'msAnimation' : 'MSAnimationIteration'
 			'animation' : 'animationiteration'
-		animationIterationNames[Modernizr.prefixed( 'animation' )]
+		animationIterationNames[prefixed( 'animation' )]
 
 	transitionend: ->
 		transitionEndNames =
-			animationEndNames =
 			'WebkitTransition' : 'webkitTransitionEnd'
 			'OTransition' : 'oTransitionEnd'
 			'msTransition' : 'MSTransitionEnd'
 			'transition' : 'transitionend'
-		transitionEndNames[Modernizr.prefixed( 'transition' )]
+		transitionEndNames[prefixed( 'transition' )]
 
 module.exports = Helpers

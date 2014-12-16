@@ -1,24 +1,18 @@
-velocity = require("velocity")
-require("velocity.ui")
+$ = require("jquery")
+Helpers = require("./helpers.coffee")
 
 exports.hero = ->
-  options =
-    display: "block"
-    delay: 100
-    easing: "easeOutExp"
-    duration: 500
-    stagger: 150
-  $.Velocity.animate($(".hero-title, .hero-subtitle, .scroll-down-button"), "transition.slideDownIn", options)
-    .then ->
-      scrollButton = $(".scroll-down-button")
-      scrollButtonBounce = setTimeout ->
-        options =
-          duration: 250
-          easing: "easeOutQuad"
-        scrollButton
-          .velocity(translateY: [10, 0], options)
-          .velocity(translateY: [0, 10], options)
-          .velocity(translateY: [10, 0], options)
-          .velocity(translateY: [0, 10], options)
-      , 1000
-      # TODO: cancel bounce if user scrolls
+  animationend = Helpers.transitionend()
+  transitionClass = "fade-in-down"
+  transitionActiveClass = "#{transitionClass}-active"
+
+
+  $elements = $(".hero-title, .hero-subtitle, .scroll-down-button")
+  $elements.addClass(transitionClass)
+  $elements.removeClass("hidden")
+
+  setTimeout ->
+    $elements.addClass(transitionActiveClass).one animationend, (e) ->
+      transitionClasses = [transitionClass, transitionActiveClass].join(" ")
+      $(e.target).removeClass(transitionClasses)
+  , 0

@@ -1,4 +1,5 @@
 Helpers = require("./helpers.coffee")
+$ = require("jquery")
 
 Sidebar =
 

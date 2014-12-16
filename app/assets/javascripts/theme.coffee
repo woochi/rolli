@@ -1,4 +1,5 @@
 # Theme JS
+$ = require("jquery")
 Animate = require("./animate.coffee")
 Sidebar = require("./sidebar.coffee")
 #StickyNavigation = require("./sticky_navigation.coffee")
@@ -8,7 +9,6 @@ ScrollButton = require("./scroll_button.coffee")
 
 Sidebar.initialize()
 #StickyNavigation.initialize()
-Parallax.initialize() unless Modernizr.touch
+Parallax.initialize() unless head.mobile
 ScrollButton.initialize()
-
 Animate.hero()

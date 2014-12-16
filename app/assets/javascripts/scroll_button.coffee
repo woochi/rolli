@@ -1,3 +1,5 @@
+$ = require("jquery")
+
 ScrollButton =
 
   initialize: ->
