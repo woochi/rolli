@@ -31,13 +31,11 @@
   height: rhythm(6)
   padding: 0 rem-calc(30)
   margin: auto
-  text-align: center
 
 .hero-title
   +adjust-font-size-to(24px)
-  +uppercase(1px)
-  margin-top: 0
-  font-weight: 400
+  position: relative
+  font-weight: 300
 
   .has-image &
     color: $white
@@ -50,6 +48,7 @@
 
 .scroll-down-button
   +transition-delay(0.3s)
+  cursor: pointer
   position: absolute
   bottom: rhythm(1)
   left: 0
@@ -65,30 +64,44 @@
     border-color: $white
     background-image: url("images/caret_down_white.svg")
 
+@media #{$small-only}
+
+  .hero-content
+    text-align: center
+
 @media #{$medium-up}
 
   .scroll-down-button
     bottom: rhythm(2)
 
   .hero-content
-    max-width: rhythm(26)
-    height: rhythm(9)
+    max-width: rhythm(19)
+    height: rhythm(10)
+    margin: auto rhythm(2)
 
   .hero-title
-    +adjust-font-size-to(48px)
+    +adjust-font-size-to(54px, 2)
 
   .hero-subtitle
-    +adjust-font-size-to(22px, 1.5)
+    +adjust-font-size-to(18px)
+    position: relative
+    padding-left: rhythm(2)
+
+    &:before
+      content: ""
+      position: absolute
+      left: rhythm(0.125)
+      top: rhythm(0.5)
+      width: rhythm(1)
+      height: 2px
+      background: $green6
 
 @media #{$large-up}
 
   .hero-content
-    max-width: rhythm(28)
-    height: rhythm(8)
+    max-width: rhythm(19)
+    height: rhythm(11)
+    margin: auto rhythm(4)
 
   .hero-title
-    +adjust-font-size-to(64px, 3)
-    margin-bottom: rhythm(0.5)
-
-  .hero-subtitle
-    margin-top: rhythm(0.5)
+    +adjust-font-size-to(72px, 3)

@@ -84,13 +84,17 @@ $nav-sticky-link-color-hover: $white
     list-style: none
     height: 100%
     margin: 0
-    padding: rhythm(2) 0
+    padding: rhythm(1.5) 0
 
     a
+      +transition(color 0.2s ease-out-quint())
       +adjust-font-size-to(24px, 1)
       display: block
-      padding: rhythm(0.25) rhythm(1.5)
-      font-weight: 300
+      padding: rhythm(0.25) rhythm(2)
+      font-weight: 400
+
+      &:hover
+        color: $green4
 
     .current-menu-item a
       color: $green6
@@ -172,6 +176,7 @@ $nav-sticky-link-color-hover: $white
       +adjust-font-size-to(30px, 1.5)
 
   .logo
+    margin-top: rhythm(-0.5)
 
     a
       width: rhythm(12)

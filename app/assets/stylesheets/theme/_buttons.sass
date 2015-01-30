@@ -12,14 +12,11 @@
 
 .button
   @extend %button
-  +rhythm-borders(2px, 0.25)
-  border-width: 2px
-  padding-left: rhythm(0.5)
-  padding-right: rhythm(0.5)
-  border-color: $green6
+  padding: rhythm(0.25, $offset: 2px) rhythm(0.5, $offset: 2px)
+  border: 2px solid $green6
   color: $green6
 
-  &:hover
+  &:hover, &:focus
     background: $green7
     border-color: $green7
     color: $white
@@ -38,7 +35,7 @@ button
   background: $green6
   color: $white
 
-  &:hover
+  &:hover, &:focus
     background: $green7
     color: $white
 
@@ -46,11 +43,7 @@ button
     background: $green8
 
 .button-list
-  list-style: none
-  padding: 0
-
-  > li
-    float: none
+  @extend .inline-block-list
 
 .svg-icon
   +transition(fill 0.2s ease-out-quint())
@@ -70,10 +63,15 @@ button
   .button-primary &
     fill: $white
 
-@media #{$medium-up}
+@media #{$small-only}
 
   .button-list
 
     > li
-      float: left
-      margin-right: rhythm(0.5)
+      width: 100%
+      margin: 0
+
+@media #{$medium-up}
+
+  .button-list
+    margin: 0

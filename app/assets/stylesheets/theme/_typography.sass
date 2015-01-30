@@ -94,6 +94,16 @@ ol, ul, dl
 li, dd
   margin: 0 0 rhythm(0.5)
 
+.inline-block-list
+  padding: 0
+
+  > li
+    display: inline-block
+    margin-left: rhythm(0.5)
+
+  > li:first-child
+    margin-left: 0
+
 // Rules
 
 hr
@@ -117,12 +127,6 @@ video
   min-height: rhythm(13)
 
 @media #{$medium-up}
-
-  body
-    +adjust-font-size-to(17px, 1)
-
-  .intro
-    +adjust-font-size-to(17px, 1)
 
   .medium-nowrap
     white-space: nowrap
