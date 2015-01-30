@@ -28,8 +28,9 @@
 
 		<?php wp_footer(); ?>
 		<script>
-    console.log(head.browser.webkit);
-    head.load('<?php echo script_uri("theme.js") ?>');
+      console.log(head.browser.webkit);
+      head.load("http://code.jquery.com/jquery-2.1.3.min.js")
+      head.load('<?php echo script_uri("theme.js") ?>');
     </script>
 	</body>
 </html>

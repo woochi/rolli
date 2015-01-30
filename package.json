@@ -5,16 +5,19 @@
     "Mikko Kivelä <mikko.s.kivela@gmail.com>"
   ],
   "browser": {
-    "jquery": "./vendor/javascripts/jquery.js",
+    "timeline-max": "./public/components/gsap/src/uncompressed/TimelineMax.js",
+    "tween-max": "./public/components/gsap/src/uncompressed/TweenMax.js",
     "velocity": "./vendor/javascripts/velocity.js",
     "velocity.ui": "./vendor/javascripts/velocity.ui.js",
     "bacon": "./vendor/javascripts/bacon.js",
     "rx": "./vendor/javascripts/rx.all.js",
     "skrollr": "./vendor/javascripts/skrollr.js",
-    "fastclick": "./vendor/javascripts/fastclick.js"
+    "fastclick": "./vendor/javascripts/fastclick.js",
+    "scroll-magic": "./vendor/javascripts/ScrollMagic.js"
   },
   "browserify-shim": {
-    "jquery": "$"
+    "jquery": "global:$",
+    "scroll-magic": "ScrollMagic"
   },
   "devDependencies": {
     "grunt-contrib-stylus": "*",

@@ -29,7 +29,7 @@ module.exports = ( grunt ) ->
         ]
     browserify:
       options:
-        transform: ["coffeeify"]
+        transform: ["coffeeify", "browserify-shim"]
       theme:
         files:
           "build/javascripts/theme.js": ["app/assets/javascripts/theme.coffee"]

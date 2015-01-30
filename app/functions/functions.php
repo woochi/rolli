@@ -537,11 +537,11 @@ function rolli_header($atts, $content = "")
         $header_class_name .= " has-image";
     }
     $header = '<header class="'.$header_class_name.'">';
-    $header .= '<div class="hero-background" style="'.$style.'" data-0="transform:translateY(0px);" data-500="transform:translateY(100px);"></div>';
-    $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div></div>';
-    $header .= '<a class="scroll-down-button hidden" role="button" title="Siirry alaspäin"></a>';
-    $header .= '</header>';
-    return $header;
+    $header .= '<span class="hero-background" style="'.$style.'"></span>';
+    $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div>';
+    $header .= '<div class="scroll-down-button" role="button" title="Siirry alaspäin"></div>';
+    $header .= '</div></header>';
+    return do_shortcode($header);
 }
 
 function rolli_quote($atts, $content = "")
@@ -660,7 +660,7 @@ function rolli_feature($atts, $content)
     $el = "<section class='feature' ".$attributes.">";
     $el .= "<div class='feature-content-wrap'>";
     $el .= "<div class='feature-content row'>";
-    $el .= "<div class='column small-11 medium-9 small-centered'>";
+    $el .= "<div class='column small-11 medium-8 small-centered'>";
     $el .= $content;
     $el .= "</div></div></div>";
     $el .= "</section>";

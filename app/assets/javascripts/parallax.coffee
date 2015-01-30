@@ -5,7 +5,7 @@ Parallax =
   initialize: ->
     $scroller = $(".content")
     $background = $(".hero-background")
-    $content = $(".hero-content")
+    $content = $(".hero-content-wrapper")
     $scrollerNode = $scroller[0]
     $contentNode = $content[0]
     $backgroundNode = $background[0]
