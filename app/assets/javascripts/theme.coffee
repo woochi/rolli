@@ -4,8 +4,10 @@ Sidebar = require("./sidebar.coffee")
 Parallax = require("./parallax.coffee")
 FastClick = require("fastclick")
 ScrollButton = require("./scroll_button.coffee")
+LazyLoad = require("./lazy_load.coffee")
 
 Sidebar.initialize()
 #StickyNavigation.initialize()
 Parallax.initialize() unless head.mobile
 ScrollButton.initialize()
+LazyLoad.initialize()

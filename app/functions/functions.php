@@ -620,11 +620,11 @@ function rolli_icon_button($atts, $content)
 
 function rolli_image_feature($atts, $content)
 {
-    $style = "background-image: url(".$atts['image'].")";
+    $image = $atts['image'];
     $align = $atts['align'];
 
     $el = "<section class='image-feature'>";
-    $el .= "<div class='image-feature-media' style='".$style."'></div>";
+    $el .= "<div class='image-feature-media lazy-load' data-image-uri='".$image."'></div>";
     $el .= "<div class='image-feature-content row ".$align."'>";
     $el .= "<div class='column small-11 medium-12 small-centered'>";
     $el .= $content;
