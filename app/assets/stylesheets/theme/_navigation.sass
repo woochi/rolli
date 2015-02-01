@@ -140,18 +140,25 @@ $nav-sticky-link-color-hover: $white
   li
     margin: 0
 
+%hover-scale
+  +transition(transform 0.2s ease-out-quint())
+
+  &:hover
+    +transform(scale(1.02, 1.02))
+
 .logo
+  @extend %hover-scale
   +adjust-font-size-to($base-font-size, 1)
   float: left
-  margin: 0
+  margin: rhythm(-0.25) 0 0
   background-repeat: no-repeat
   background-size: auto 100%
 
   a
     display: block
     text-indent: -9999px
-    width: rhythm(2)
-    height: rhythm(2)
+    width: rhythm(1.75)
+    height: rhythm(1.75)
 
 .copyright
   +adjust-font-size-to(14px)

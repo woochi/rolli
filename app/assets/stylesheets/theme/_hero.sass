@@ -12,6 +12,10 @@
   bottom: 0
   left: 0
   right: 0
+  background-position: center bottom
+
+  .has-image &
+    background-color: #4f5c51
 
 .hero-content-wrapper
   position: relative
@@ -19,7 +23,8 @@
   height: 100%
 
   .has-image &
-    background: rgba($black, 0.3)
+    background-color: rgba($black, 0.3)
+    +background-image(linear-gradient(top, rgba($black, 0) 85%, rgba($black, 0.3) 100%))
 
 .hero-content
   position: absolute
@@ -28,14 +33,15 @@
   top: 0
   bottom: 0
   width: 100%
-  height: rhythm(6)
+  height: rhythm(9)
   padding: 0 rem-calc(30)
   margin: auto
+  text-align: center
 
 .hero-title
   +adjust-font-size-to(24px)
   position: relative
-  font-weight: 300
+  letter-spacing: -1px
 
   .has-image &
     color: $white
@@ -47,7 +53,7 @@
     color: $white
 
 .scroll-down-button
-  +transition-delay(0.3s)
+  +transition(transform 0.2s ease-out-quint())
   cursor: pointer
   position: absolute
   bottom: rhythm(1)
@@ -64,44 +70,74 @@
     border-color: $white
     background-image: url("images/caret_down_white.svg")
 
-@media #{$small-only}
+  &:hover
+    +transform(scale(1.1, 1.1))
 
-  .hero-content
-    text-align: center
+.hero-supertitle
+  +uppercase(1px)
+
+  .has-image &
+    color: $white
 
 @media #{$medium-up}
+
+  %line
+    content: ""
+    position: absolute
+    top: 32px
+    height: 2px
+    width: rhythm(1.75)
+    background: $white
 
   .scroll-down-button
     bottom: rhythm(2)
 
   .hero-content
     max-width: rhythm(19)
-    height: rhythm(10)
-    margin: auto rhythm(2)
+    height: rhythm(9)
+
+  .hero-supertitle
+    letter-spacing: 2px
+    font-weight: 600
 
   .hero-title
     +adjust-font-size-to(54px, 2)
+    margin: rhythm(0.5) 0
+    font-weight: 300
+
+    &:before
+      @extend %line
+      left: 61px
+
+    &:after
+      @extend %line
+      right: 61px
 
   .hero-subtitle
     +adjust-font-size-to(18px)
     position: relative
-    padding-left: rhythm(2)
-
-    &:before
-      content: ""
-      position: absolute
-      left: rhythm(0.125)
-      top: rhythm(0.5)
-      width: rhythm(1)
-      height: 2px
-      background: $green6
+    margin: 0
 
 @media #{$large-up}
 
+  %line-large
+    width: rhythm(2.25)
+    top: 42px
+
   .hero-content
-    max-width: rhythm(19)
-    height: rhythm(11)
-    margin: auto rhythm(4)
+    max-width: rhythm(22)
+    height: rhythm(7)
+
+  .hero-supertitle
+    letter-spacing: 3px
 
   .hero-title
-    +adjust-font-size-to(72px, 3)
+    +adjust-font-size-to(72px, 2.5)
+
+    &:before
+      @extend %line-large
+      left: 40px
+
+    &:after
+      @extend %line-large
+      right: 40px
