@@ -38,16 +38,40 @@
   margin: auto
   text-align: center
 
+%line
+  content: ""
+  position: absolute
+  top: 23px
+  height: 2px
+  width: rhythm(1.25)
+  background: $white
+
+.hero-supertitle
+  +uppercase(1px)
+
+  .has-image &
+    color: $yellow5
+
 .hero-title
-  +adjust-font-size-to(24px)
+  +adjust-font-size-to(36px, 1.5)
   position: relative
   letter-spacing: -1px
+  margin: rhythm(0.5) 0
 
   .has-image &
     color: $white
 
+  &:before
+    @extend %line
+    left: 26px
+
+  &:after
+    @extend %line
+    right: 26px
+
 .hero-subtitle
   +transition-delay(0.1s)
+  margin: 0
 
   .has-image &
     color: $white
@@ -73,21 +97,12 @@
   &:hover
     +transform(scale(1.1, 1.1))
 
-.hero-supertitle
-  +uppercase(1px)
-
-  .has-image &
-    color: $yellow5
-
 @media #{$medium-up}
 
-  %line
-    content: ""
-    position: absolute
+  %line-medium
     top: 32px
     height: 2px
     width: rhythm(1.75)
-    background: $white
 
   .scroll-down-button
     bottom: rhythm(2)
@@ -102,21 +117,19 @@
 
   .hero-title
     +adjust-font-size-to(54px, 2)
-    margin: rhythm(0.5) 0
     font-weight: 300
 
     &:before
-      @extend %line
+      @extend %line-medium
       left: 61px
 
     &:after
-      @extend %line
+      @extend %line-medium
       right: 61px
 
   .hero-subtitle
     +adjust-font-size-to(18px)
     position: relative
-    margin: 0
 
 @media #{$large-up}
 
