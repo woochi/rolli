@@ -3,6 +3,12 @@ $sticky-transition-duration: 500ms
 $nav-sticky-link-color: rgba($white, 0.8)
 $nav-sticky-link-color-hover: $white
 
+%hover-scale
+  +transition(transform 0.2s ease-out-quint())
+
+  &:hover
+    +transform(scale(1.05, 1.05))
+
 .nav-header
   position: absolute
   left: rhythm(1)
@@ -62,23 +68,20 @@ $nav-sticky-link-color-hover: $white
       color: $nav-sticky-link-color-hover
 
 .nav-sidebar
-  +transition(background-color $transition-duration ease-out-quint())
   position: absolute
-  right: 0
+  left: 100%
   top: 0
   z-index: $zindex-sidebar
   width: $sidebar-width
   height: 100%
-  background-color: $grey2
+  background-color: $white
 
   .sidebar-open &, .sidebar-close &
     will-change: background-color
 
   .sidebar-open-active &, .sidebar-close &
-    background-color: $white
-
-  .sidebar-close-active &
-    background-color: $grey2
+    left: auto
+    right: 0
 
   .menu
     list-style: none
@@ -100,21 +103,11 @@ $nav-sticky-link-color-hover: $white
       color: $green6
 
 .sidebar-logo-wrapper
-  +transition(background-color $transition-duration ease-out-quint())
   position: relative
   width: rhythm(2)
   margin: rhythm(0.5) auto
   padding: 0 rhythm(0.25)
-  background-color: $grey2
-
-  .sidebar-open &, .sidebar-close &
-    will-change: background-color
-
-  .sidebar-open-active &, .sidebar-close &
-    background-color: $white
-
-  .sidebar-close-active &
-    background-color: $grey2
+  background-color: $white
 
 .sidebar-logo
   opacity: 0.5
@@ -139,12 +132,6 @@ $nav-sticky-link-color-hover: $white
 
   li
     margin: 0
-
-%hover-scale
-  +transition(transform 0.2s ease-out-quint())
-
-  &:hover
-    +transform(scale(1.05, 1.05))
 
 .logo
   @extend %hover-scale

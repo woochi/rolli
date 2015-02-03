@@ -7,25 +7,17 @@
     background-color: $white
 
 %icon-bar-pseudo
-  +transition(transform 0.2s ease-in-out)
   content: ""
   position: absolute
 
 .icon-menu
   @extend %icon-bar
-  +transition(background-color 0.2s ease-in-out)
   display: inline-block
   vertical-align: middle
   position: relative
   margin: rhythm(0.44) 0
   margin-left: rhythm(0.25)
   float: right
-
-  .sidebar-open &, .sidebar-open-active &
-    background-color: rgba($white, 0)
-
-  .sidebar-close &, .sidebar-close-active &
-    background-color: rgba($white, 0)
 
   &::before
     @extend %icon-bar
@@ -36,25 +28,3 @@
     @extend %icon-bar
     @extend %icon-bar-pseudo
     +transform(translateY(6px))
-
-  a:hover &::before
-    +transform(translateY(-8px))
-
-  a:hover &::after
-    +transform(translateY(8px))
-
-.icon-menu::before
-
-  .sidebar-open, .sidebar-close
-    will-change: transform
-
-  .sidebar-open-active &
-    +transform(rotate3d(0,0,1,45deg) translateY(0) scale(0.8))
-
-.icon-menu::after
-
-  .sidebar-open, .sidebar-close
-    will-change: transform
-
-  .sidebar-open-active &
-    +transform(rotate3d(0,0,1,-45deg) translateY(0) scale(0.8))
