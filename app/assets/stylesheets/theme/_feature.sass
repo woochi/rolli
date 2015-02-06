@@ -17,7 +17,15 @@ $caret-size: rhythm(0.5)
 .feature-title
   +adjust-font-size-to(20px, 1)
 
+.feature-number
+  color: $green6
+
+  &:after
+    content: " | "
+    color: $header-font-color
+
 .feature-content
+  padding: rhythm(1) 0
   color: $grey7
 
 .feature-image
@@ -39,24 +47,21 @@ $caret-size: rhythm(0.5)
   .feature-image
     margin-top: rhythm(1)
 
-  .feature-content-wrap
-    padding: rhythm(1) 0
-
 @media #{$medium-up}
 
   .feature
-    +flexbox((display: box, box-orient: horizontal), $version: 1)
-    +flexbox((display: flexbox, flex-pack: center, flex-align: center), $version: 2)
-    +flexbox((display: flex, align-items: center, justify-content: center))
+    display: table
+    width: 100%
     height: 100%
     min-height: rhythm(20)
 
   .feature-content
-    +flexbox((box-flex: 0), $version: 2)
-    +flexbox((flex-grow: 0))
+    display: table-cell
+    vertical-align: middle
 
   .feature-title
     +adjust-font-size-to(28px, 1.5)
+    margin-top: 0
 
   .feature-annotation
     +adjust-font-size-to(14px, 0.75)

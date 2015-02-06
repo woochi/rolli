@@ -426,9 +426,9 @@ add_filter('upload_mimes', 'svg_mime_types');
 // Shortcodes
 add_shortcode('html5_shortcode_demo', 'html5_shortcode_demo'); // You can place [html5_shortcode_demo] in Pages, Posts now.
 add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [html5_shortcode_demo_2] in Pages, Posts now.
-add_shortcode('rolli_recent_posts', 'rolli_recent_posts');
-add_shortcode('rolli_header', 'rolli_header');
-add_shortcode('rolli_quote', 'rolli_quote');
+add_shortcode('rolli-recent_posts', 'rolli_recent_posts');
+add_shortcode('rolli-header', 'rolli_header');
+add_shortcode('rolli-quote', 'rolli_quote');
 add_shortcode('rolli-image-banner', 'rolli_image_banner');
 add_shortcode('rolli-icon-button', 'rolli_icon_button');
 add_shortcode('rolli-feature', 'rolli_feature');
@@ -539,8 +539,10 @@ function rolli_header($atts, $content = "")
     }
     $header = '<header class="'.$header_class_name.'">';
     $header .= '<span class="hero-background" style="'.$style.'"></span>';
-    $header .= '<div class="hero-content-wrapper"><div class="hero-content">' . $content . '</div>';
-    $header .= '<div class="scroll-down-button" role="button" title="Siirry alaspäin"></div>';
+    $header .= '<div class="hero-content-wrapper">';
+    $header .= '<div class="hero-content">';
+    $header .= do_shortcode($content);
+    $header .= '</div><div class="scroll-down-button" role="button" title="Siirry alaspäin"></div>';
     $header .= '</div></header>';
     return do_shortcode($header);
 }
@@ -640,8 +642,8 @@ function rolli_icon_feature($atts, $content)
     $image = $atts['image'];
 
     $el = "<section class='feature'>";
-    $el .= "<div class='feature-content-wrap'>";
-    $el .= "<div class='feature-content row'>";
+    $el .= "<div class='feature-content'>";
+    $el .= "<div class='row'>";
     $el .= "<div class='column small-6 medium-4 small-centered large-uncentered'>";
     $el .= "<img class='feature-image' src='".$image."'>";
     $el .= "</div>";
@@ -659,11 +661,9 @@ function rolli_feature($atts, $content)
     if (id) {$attributes .= "id='".$id."'";};
 
     $el = "<section class='feature' ".$attributes.">";
-    $el .= "<div class='feature-content-wrap'>";
-    $el .= "<div class='feature-content row'>";
-    $el .= "<div class='column small-11 medium-8 small-centered'>";
+    $el .= "<div class='feature-content'>";
     $el .= $content;
-    $el .= "</div></div></div>";
+    $el .= "</div>";
     $el .= "</section>";
     return do_shortcode($el);
 }

@@ -1,14 +1,16 @@
 .countdown
   position: relative
+  max-width: rhythm(9)
+  margin: 0 auto
 
 .countdown-full
   stroke: $grey2
-  stroke-width: 8px
+  stroke-width: 14px
   fill: none
 
 .countdown-remaining
   @extend .countdown-full
-  stroke: $green5
+  stroke: $green6
 
 .countdown-amount
   +adjust-font-size-to($h1-font-size)
