@@ -1,0 +1,25 @@
+.countdown
+  position: relative
+
+.countdown-full
+  stroke: $grey2
+  stroke-width: 8px
+  fill: none
+
+.countdown-remaining
+  @extend .countdown-full
+  stroke: $green5
+
+.countdown-amount
+  +adjust-font-size-to($h1-font-size)
+  position: absolute
+  top: 50%
+  left: 0
+  right: 0
+  margin-top: rhythm(-1.5)
+  text-align: center
+
+.countdown-unit
+  +adjust-font-size-to(16px)
+  +uppercase(1px)
+  display: block

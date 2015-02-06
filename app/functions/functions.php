@@ -434,6 +434,7 @@ add_shortcode('rolli-icon-button', 'rolli_icon_button');
 add_shortcode('rolli-feature', 'rolli_feature');
 add_shortcode('rolli-image-feature', 'rolli_image_feature');
 add_shortcode('rolli-icon-feature', 'rolli_icon_feature');
+add_shortcode('rolli-countdown', 'rolli_countdown');
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
@@ -665,6 +666,47 @@ function rolli_feature($atts, $content)
     $el .= "</div></div></div>";
     $el .= "</section>";
     return do_shortcode($el);
+}
+
+function deg_to_rad($deg)
+{
+    return pi()*$deg/180;
+}
+
+function seconds_to_days($seconds)
+{
+    $dtf = new DateTime("@0");
+    $dtt = new DateTime("@$seconds");
+    return $dtf->diff($dtt)->format("%a");
+}
+
+function rolli_countdown($atts)
+{
+    $options = shortcode_atts(array(
+        'start' => new DateTime(),
+        'end' => new DateTime()
+    ), $atts);
+
+    $radius = 240;
+    $start_time = strtotime($options['start']); //1433203200
+    $current_time = time(); //1423235577
+    $end_time = strtotime($options['end']); // 1433462400
+    $remaining = $end_time - $current_time;
+    $relative_remaining = ($end_time - $current_time) / ($end_time - $start_time);
+    $dash_array = pi()*$radius*2;
+    $dash_offset = pi()*$radius*2*(1-$relative_remaining);
+
+
+    // TODO: Handle 0 remaining
+
+    $el = "<div class='countdown'>";
+    $el .= "<svg class='countdown' viewBox='0 0 500 500' preserveAspectRatio='xMinYMin meet'>";
+    $el .= sprintf("<circle cx='250' cy='250' r='%u' class='countdown-full'></circle>", $radius);
+    $el .= sprintf("<circle cx='250' cy='250' r='%u' class='countdown-remaining' stroke-dasharray='%f' stroke-dashoffset='0' style='stroke-dashoffset: %fpx;'></circle>", $radius, $dash_array, $dash_offset);
+    $el .= "</svg>";
+    $el .= sprintf("<label class='countdown-amount'>%u <span class='countdown-unit'>päivää</span></label>", seconds_to_days($remaining));
+    $el .= "</div>";
+    return $el;
 }
 
 function rolli_customize_register($wp_customize)
