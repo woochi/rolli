@@ -1,10 +1,9 @@
 Helpers = require("./helpers.coffee")
-$ = require("jquery")
 
 Sidebar =
 
   initialize: ->
-    $toggle = $(".sidebar-toggle")
+    $toggle = $(".nav-toggle")
     return if $toggle.length is 0
     $body = $("body")
     $content = $(".content")

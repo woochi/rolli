@@ -1,7 +1,6 @@
 <!doctype html>
-<html <?php language_attributes(); ?> class="no-js">
+<html <?php language_attributes(); ?>>
 	<head>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <?php wp_head(); ?>
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
@@ -18,11 +17,6 @@
   ?>
 	<body <?php body_class($body_class); ?>>
 
-    <!-- <?php get_template_part('pagination'); ?> -->
-
-		<div class="wrapper">
-      <div class="content-wrapper">
-        <?php get_template_part('navigation', 'sidebar'); ?>
-        <div class="content">
-		      <?php get_template_part('navigation'); ?>
-          <main role="main">
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <a class="exit-off-canvas"></a>

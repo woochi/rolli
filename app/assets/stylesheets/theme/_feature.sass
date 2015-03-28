@@ -1,3 +1,7 @@
+$feature-title-font-size: 24px
+$feature-title-font-size-medium: 26px
+$feature-title-font-size-large: 34px
+
 $caret-size: rhythm(0.5)
 
 .feature
@@ -5,17 +9,15 @@ $caret-size: rhythm(0.5)
   border-top: 1px solid $grey1
   background: $white
 
-.feature-separator
-  margin: rhythm(1) 0
-  border-color: $grey1
-
 .feature-supertitle
-  +adjust-font-size-to(18px, 1)
+  +adjust-font-size-to(18px)
   display: block
   color: $green6
+  font-weight: 500
 
 .feature-title
-  +adjust-font-size-to(20px, 1)
+  +adjust-font-size-to($feature-title-font-size)
+  +uppercase(1px)
 
 .feature-number
   color: $green6
@@ -24,28 +26,19 @@ $caret-size: rhythm(0.5)
     content: " | "
     color: $header-font-color
 
-.feature-content
-  padding: rhythm(1) 0
-  color: $grey7
+.feature-wrap
+  padding: $column-gutter $column-gutter*0.5
 
-.feature-image
-  width: 100%
-
-.feature-quote
-  +trailing-border(1px, 2)
-  margin-bottom: rhythm(2)
-  border-color: $grey1
-  font-family: $serif-font-family
-  font-style: italic
-  color: $text-color-alt
-
-.feature-annotation
-  display: none
+.feature-body
+  margin: 0
 
 @media #{$small-only}
 
   .feature-image
     margin-top: rhythm(1)
+
+  .feature
+    background: none !important
 
 @media #{$medium-up}
 
@@ -53,28 +46,51 @@ $caret-size: rhythm(0.5)
     display: table
     width: 100%
     height: 100%
-    min-height: rhythm(20)
 
-  .feature-content
+  .feature-wrap
+    padding: 10% 0
     display: table-cell
     vertical-align: middle
 
   .feature-title
-    +adjust-font-size-to(28px, 1.5)
+    +adjust-font-size-to($feature-title-font-size-medium)
     margin-top: 0
 
-  .feature-annotation
-    +adjust-font-size-to(14px, 0.75)
-    +leading-border(1px, 0.5)
-    display: block
-    max-width: rhythm(8)
-    color: $grey6
-    border-color: $grey6
+  .feature-content
+    float: left
+    width: 50%
+    max-width: rhythm(18)
 
-  #contact
-    padding-bottom: rhythm(4)
+    .image-feature &
+      background: $white
+      padding: rhythm(2)
+      max-width: rhythm(20)
+      border-bottom: 5px solid $green6
+      box-shadow: 0 0 10px rgba($black, 0.5)
+
+  .feature-col
+    float: left
+    width: 50%
+    max-width: rhythm(22)
+    padding: 0 rhythm(1)
+
+    &.first
+      padding-left: 0 !important
+
+    &.last
+      padding-right: 0 !important
+
+  .intro-quote
+    +adjust-font-size-to(24px, 1.5)
+    width: 50%
+    border-left: 2px solid $grey2
+    padding-left: rhythm(1, $offset: 2px)
+    padding-right: rhythm(1)
 
 @media #{$large-up}
+
+  .feature-col
+    padding: 0 rhythm(2)
 
   .feature-image
     padding: rhythm(0.5)
@@ -84,4 +100,16 @@ $caret-size: rhythm(0.5)
     margin: rhythm(0.25) 0
 
   .feature-title
-    +adjust-font-size-to(34px, 1.5)
+    +adjust-font-size-to($feature-title-font-size-large, 1.5)
+
+  .feature-content
+
+    .image-feature &
+      max-width: rhythm(22)
+
+  .feature-content-right
+    float: right
+
+  .feature-content-center
+    margin: 0 auto
+    text-align: center

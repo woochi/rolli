@@ -4,12 +4,12 @@ Parallax =
 
   initialize: ->
     $scroller = $(".content")
-    $background = $(".hero-background")
-    $content = $(".hero-content-wrapper")
+    $background = $(".cover-background")
+    $content = $(".cover-wrap")
     $scrollerNode = $scroller[0]
     $contentNode = $content[0]
     $backgroundNode = $background[0]
-    heroHeight = $(".hero").height()
+    heroHeight = $(".cover").outerHeight()
 
     scrollPosition = 0
     scrollRatio = 0

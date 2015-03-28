@@ -3,8 +3,13 @@
 // Load HTML5 Blank styles
 function html5blank_styles()
 {
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    wp_dequeue_style( 'font-awesome' );
+    wp_register_style('html5blank', stylesheet_uri('/style.css'), array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
+}
+
+function stylesheet_uri($path = "") {
+    return (get_template_directory_uri() . $path);
 }
 
 function script_uri($path = "")
@@ -21,8 +26,8 @@ function rolli_scripts()
         wp_deregister_script('comment-reply');
 
         // Register head.js for async script loading
-        wp_register_script('head.js', script_uri('head.min.js'));
-        wp_enqueue_script('head.js');
+        wp_register_script('theme', script_uri('theme.js'));
+        wp_enqueue_script('theme');
     }
 }
 
@@ -31,13 +36,11 @@ add_action( 'admin_enqueue_scripts', 'rolli_admin_styles' );
 add_action('init', 'rolli_scripts'); // Add Custom Scripts to wp_head
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
-add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 //add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 add_action('customize_register', 'rolli_customize_register'); // Customization menus
 add_action('wp_head', 'rolli_customize_css');
-add_action( 'customize_preview_init' , 'rolli_customize_live_preview');
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -53,15 +56,7 @@ remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
-// Register HTML5 Blank Navigation
-function register_html5_menu()
-{
-    register_nav_menus(array( // Using array to specify more menus if needed
-        'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
-        'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-        'sticky-menu' => __('Sticky Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
-    ));
-}
+
 
 function rolli_admin_styles()
 {
@@ -84,11 +79,7 @@ function rolli_customize_css()
     */
 }
 
-function rolli_customize_live_preview()
-{
-    wp_register_script('rolli_preview', get_template_directory_uri() . '/javascripts/preview.js', array('jquery'), '1.0.0', true); // Custom
-    wp_enqueue_script('rolli_preview');
-}
+
 
 function css_rule($selector, $prop, $style)
 {

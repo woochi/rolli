@@ -4,103 +4,88 @@ $nav-sticky-link-color: rgba($white, 0.8)
 $nav-sticky-link-color-hover: $white
 
 %hover-scale
-  +transition(transform 0.2s ease-out-quint())
+  transition: transform 0.2s $transition-easing
 
   &:hover
-    +transform(scale(1.05, 1.05))
+    transform: scale(1.05, 1.05)
+
+%inline-nav
+  list-style: none
+  margin: 0
+
+  li
+    display: inline-block
+    margin-right: rhythm(1)
+
+    &:last-child
+      margin-right: 0
+
+%inline-nav-item
+  +uppercase(1px)
+
+.nav-item
+
+  a
+    padding: 2px 0
+
+  a:hover, &.nav-item-current a
+    transition: color 0.2s $transition-easing
+    color: $green6
 
 .nav-header
   position: absolute
-  left: rhythm(1)
-  right: rhythm(1)
-  top: rhythm(1)
+  left: 10%
+  right: 10%
+  top: 5%
   z-index: $zindex-navigation
 
-  .menu
-    +inline-block-list(rhythm(1))
+  .nav-list
+    @extend %inline-nav
     float: right
 
-    li
-      display: block
-
-    a
-      +adjust-font-size-to($navigation-font-size)
-      text-transform: uppercase
-      font-weight: 600
-      color: $white
-
-    a:hover
-      border-bottom: 4px solid $green6
-
-    a:active
-      color: $grey1
-      border-bottom: 4px solid $green6
-
-.nav-sticky
-  display: none
-  position: absolute
-  left: 0
-  right: 0
-  z-index: $zindex-navigation-sticky
-  padding: rhythm(1.5) rhythm(1.5)
-  background: $primary-color
-
-  &.nav-sticky-visible
-    display: block
-
-  &.nav-sticky-opening
-    +animation(fadeInDown $sticky-transition-duration ease-out-quint() both)
-
-  &.nav-sticky-closing
-    +animation(fadeOutUp $sticky-transition-duration ease-out-quint() both)
-
-  .menu
-    +inline-block-list(rhythm(1))
-    float: right
-
-  a
-    +adjust-font-size-to($navigation-font-size)
-    text-transform: uppercase
-    color: $nav-sticky-link-color
+  .nav-item
+    @extend %inline-nav-item
     font-weight: 600
 
-    &:hover
-      color: $nav-sticky-link-color-hover
+    .has-image & a
+      color: $white
+
+    .has-image & a:hover
+      border-bottom: 2px solid $green6
+
+.nav-footer
+
+  .nav-list
+    @extend %inline-nav
+
+  .nav-item
+    @extend %inline-nav-item
+    position: relative
+
+    &:after
+      content: "\b7"
+      position: absolute
+      right: rhythm(-0.625)
+
+    &:last-child:after
+      content: none
 
 .nav-sidebar
-  position: absolute
-  left: 100%
-  top: 0
-  z-index: $zindex-sidebar
-  width: $sidebar-width
-  height: 100%
-  background-color: $white
 
-  .sidebar-open &, .sidebar-close &
-    will-change: background-color
-
-  .sidebar-open-active &, .sidebar-close &
-    left: auto
-    right: 0
-
-  .menu
+  .nav-list
     list-style: none
     height: 100%
     margin: 0
     padding: rhythm(1.5) 0
 
     a
-      +transition(color 0.2s ease-out-quint())
       +adjust-font-size-to(24px, 1)
       display: block
       padding: rhythm(0.25) rhythm(2)
       font-weight: 400
 
-      &:hover
-        color: $green4
-
-    .current-menu-item a
-      color: $green6
+  .nav-item
+    margin-bottom: rhythm(0.5)
 
 .sidebar-logo-wrapper
   position: relative
@@ -119,13 +104,16 @@ $nav-sticky-link-color-hover: $white
   right: 0
   margin: 0
 
-.sidebar-toggle
+.nav-toggle
   +uppercase(1px)
   +adjust-font-size-to($navigation-font-size)
-  float: right
   font-weight: 600
+  position: relative
 
-  .has-image &
+  .nav-header &
+    float: right
+
+  .has-image .nav-header &
     color: $white
 
 .menu
@@ -138,7 +126,7 @@ $nav-sticky-link-color-hover: $white
   +adjust-font-size-to($base-font-size, 1)
   float: left
   margin: rhythm(-0.25) 0 0
-  background-repeat: no-repeat
+  background: url("images/logo_crest_dark.png") center no-repeat
   background-size: auto 100%
 
   a
@@ -146,6 +134,11 @@ $nav-sticky-link-color-hover: $white
     text-indent: -9999px
     width: rhythm(1.75)
     height: rhythm(1.75)
+    position: relative
+    z-index: $zindex-navigation
+
+  .has-image &
+    background-image: url("images/logo_crest_light.png")
 
 .copyright
   +adjust-font-size-to(14px)
@@ -156,6 +149,19 @@ $nav-sticky-link-color-hover: $white
   padding: 0 rhythm(1.5)
   color: $text-color-alt
 
+.scroll-up
+  @extend .nav-toggle
+
+@media #{$small-only}
+
+  .nav-list
+
+    .nav-header &
+      display: none
+
+    .nav-footer &
+      display: none
+
 @media #{$medium-up}
 
   .nav-header
@@ -164,7 +170,6 @@ $nav-sticky-link-color-hover: $white
     top: rhythm(2)
 
   .nav-sidebar
-    width: $sidebar-width-large
 
     .menu a
       +adjust-font-size-to(30px, 1.5)
@@ -176,3 +181,6 @@ $nav-sticky-link-color-hover: $white
       width: rhythm(2.5)
       height: rhythm(2.5)
       padding: rhythm(0.25) 0
+
+  .nav-toggle
+    display: none

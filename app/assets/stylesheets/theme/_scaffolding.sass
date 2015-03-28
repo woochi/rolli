@@ -1,6 +1,16 @@
 body
   background: $body-background
 
+.off-canvas-wrap
+  height: 100%
+  overflow-y: auto
+
+  &.move-left, &.move-right
+    overflow: hidden
+
+.inner-wrap
+  height: 100%
+
 .wrapper
   overflow: hidden
   position: relative
@@ -12,47 +22,40 @@ body
   background: $body-background
 
 .content
-  overflow-scrolling: touch
-  -webkit-overflow-scrolling: touch
   position: relative
   z-index: $zindex-content
-  overflow-y: auto
   overflow-x: hidden
+  background: $body-background
+  overflow-scrolling: touch
+  -webkit-overflow-scrolling: touch
   height: 100%
+  overflow-y: auto
 
   .sidebar-open &
     will-change: transform
-    -webkit-transition: -webkit-transform ease-out-expo() $transition-duration
-    -moz-transition: -moz-transform ease-out-expo() $transition-duration
-    -ms-transition: -ms-transform ease-out-expo() $transition-duration
-    -o-transition: -o-transform ease-out-expo() $transition-duration
     transition: transform ease-out-expo() $transition-duration
-    +transform(translateX(0px))
+    transform: translateX(0px)
     overflow: hidden
 
   .sidebar-open-active &
-    +transform(translateX($sidebar-width*-1))
+    transform: translateX($sidebar-width*-1)
     overflow: hidden
 
   .sidebar-close &
     will-change: transform
-    -webkit-transition: -webkit-transform ease-out-expo() $transition-duration
-    -moz-transition: -moz-transform ease-out-expo() $transition-duration
-    -ms-transition: -ms-transform ease-out-expo() $transition-duration
-    -o-transition: -o-transform ease-out-expo() $transition-duration
     transition: transform ease-out-expo() $transition-duration
-    +transform(translateX($sidebar-width*-1))
+    transform: translateX($sidebar-width*-1)
     overflow: hidden
 
   .sidebar-close-active &
-    +transform(translateX(0px))
+    transform: translateX(0px)
     overflow: hidden
 
 main
   height: 100%
 
 .overlay-mask
-  +transition(opacity ease-out-expo() $transition-duration)
+  transition: opacity ease-out-expo() $transition-duration
   position: absolute
   left: 0
   top: 0
@@ -85,10 +88,10 @@ main
   .content
 
     .sidebar-open-active &
-      +transform(translateX($sidebar-width-large*-1))
+      transform: translateX($sidebar-width-large*-1)
 
     .sidebar-close &
-      +transform(translateX($sidebar-width-large*-1))
+      transform: translateX($sidebar-width-large*-1)
 
     .sidebar-close-active &
-      +transform(translateX(0px))
+      transform: translateX(0px)

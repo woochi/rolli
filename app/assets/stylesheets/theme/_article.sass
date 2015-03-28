@@ -1,0 +1,58 @@
+$section-divider-width: rhythm(3)
+$article-footer-font-size: $base-font-size + 4px
+
+.article
+  padding: rhythm(1) 0
+
+.section-divider
+  width: $section-divider-width
+  margin: rhythm(2) auto
+
+.section-title
+  text-align: center
+
+.section-subtitle
+  margin: rhythm(1) 0
+  text-align: center
+  font-style: italic
+
+.article-quote
+  +adjust-font-size-to($h4-font-size)
+  margin: rhythm(1) 0
+  text-align: center
+  color: $grey6
+
+.article-type
+  position: relative
+  z-index: $zindex-article-type
+  width: rhythm(3)
+  height: rhythm(3)
+  margin: rhythm(-3.5) auto rhythm(1)
+  border-radius: 50%
+  background: $white
+
+.article-footer
+  +adjust-font-size-to($article-footer-font-size)
+  margin-top: rhythm(2)
+  padding: rhythm(2, $offset: 1px) 0 rhythm(2)
+  border-top: 1px solid $grey1
+  text-align: center
+
+.article-image-full
+  margin: rhythm(1) 0
+
+.article-intro
+  +adjust-font-size-to($base-font-size + 2px)
+  padding: rhythm(2) 0 rhythm(2, $offset: 1px)
+  border-bottom: 1px solid $grey1
+  text-align: center
+
+@media #{$medium-up}
+
+  .article-type
+    width: rhythm(3)
+    height: rhythm(3)
+    margin-top: rhythm(-1.5)
+
+  .article-image-full
+    margin: rhythm(2) 0

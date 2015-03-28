@@ -3,7 +3,10 @@
   $sidebar_logo = get_theme_mod('rolli_footer_logo', $default_footer_logo);
 ?>
 <nav class="nav-sidebar" role="navigation">
-  <?php rolli_nav(array('theme_location' => 'sidebar-menu')); ?>
+  <?php rolli_nav(array(
+    'theme_location' => 'sidebar',
+    'menu_class' => 'sidebar-nav-list'
+  )); ?>
   <div class="copyright" role="contentinfo">
     <hr class="sidebar-separator">
     <div class="sidebar-logo-wrapper">

@@ -1,4 +1,3 @@
-$ = require("jquery")
 Helpers = require("./helpers.coffee")
 
 exports.hero = ->

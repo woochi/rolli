@@ -1,21 +1,25 @@
+*
+  box-sizing: border-box
+
 html
   width: 100%
+  height: 100%
   font-size: 100%
 
 body
   width: 100%
+  height: 100%
   font: #{$base-font-size}/#{$base-line-height} $base-font-family
   color: $text-color
   overflow-x: hidden
   -webkit-font-smoothing: antialiased
 
 %header
-  margin: rhythm(1, $h6-font-size) 0
+  @extend %default-margin
   font-family: $base-font-family
   font-weight: $header-font-weight
   color: $header-font-color
   text-rendering: $header-text-rendering
-  +uppercase(1px)
 
 h1
   @extend %header
@@ -45,11 +49,20 @@ h6
 // Links
 
 a
-  +link-colors($link-color, $link-color-hover, $link-color-active, $link-color-visited, $link-color-focus)
+  color: $link-color
   text-decoration: $link-decoration
   cursor: pointer
   color: $link-color
   outline: 0 !important
+
+  &:hover
+    color: $link-color-hover
+
+  &:active
+    color: $link-color-active
+
+  &:visited
+    color: $link-color
 
 // Text blocks
 
@@ -59,7 +72,7 @@ p
   line-height: inherit
 
 %quote
-  +adjust-font-size-to(42px, 1)
+  +adjust-font-size-to(28px, 1)
   vertical-align: rhythm(-0.5)
 
 blockquote
@@ -68,17 +81,22 @@ blockquote
   border: none
   font-family: $serif-font-family
   font-style: italic
-  quotes: "\201C""\201D""\2018""\2019"
-  text-indent: rhythm(-0.8)
+  quotes: "\201C" "\201D" "\2018" "\2019"
 
-  &::before
-    @extend %quote
+  &:before
     content: open-quote
 
-  p
+  &:after
+    content: close-quote
+
+  p, h1, h2, h3, h4, h5
+    font-family: $serif-font-family
     display: inline
 
 // Inline styles
+
+q
+  font-style: italic
 
 .uppercase
   +uppercase(1px)
@@ -90,9 +108,6 @@ blockquote
 
 ol, ul, dl
   @extend %default-margin
-
-li, dd
-  margin: 0 0 rhythm(0.5)
 
 .inline-block-list
   padding: 0
@@ -120,6 +135,7 @@ hr
 // Images and videos
 
 img
+  display: block
   max-width: 100%
 
 video

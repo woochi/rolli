@@ -75,55 +75,14 @@ if (function_exists('register_sidebar'))
     ));
 }
 
-// Rolli navigation
-function rolli_nav($custom_options = array())
-{
-    $defaults = array(
-        'theme_location'  => 'header-menu',
-        'menu'            => '',
-        'menu_class'      => 'menu',
-        'menu_id'         => '',
-        'container'       => 'div',
-        'container_class' => 'menu-container',
-        'container_id'    => '',
-        'echo'            => true,
-        'fallback_cb'     => 'wp_page_menu',
-        'before'          => '',
-        'after'           => '',
-        'link_before'     => '',
-        'link_after'      => '',
-        'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
-        'depth'           => 0,
-        'walker'          => ''
-    );
-    $options = array_merge($defaults, $custom_options);
-    $locations = get_nav_menu_locations();
-    $menu_name = $options['theme_location'];
-    $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-    $items = wp_get_nav_menu_items($menu->term_id);
-    $collapsable = $options['collapsable'];
+function render_template($template, $locals = array(), $content = ''){
+    if (!empty($content))
+        $locals['content'] = do_shortcode($content);
 
-    if (!$collapsable)
-    {
-        wp_nav_menu($options);
-    }
-    else if (sizeof($items) < 4)
-    {
-        echo rolli_sidebar_toggle("show-for-small-only");
-        wp_nav_menu($options);
-    }
-    else
-    {
-        echo rolli_sidebar_toggle();
-    }
-}
-
-function rolli_sidebar_toggle($class_name = "")
-{
-    $class_name = join(" ", array("sidebar-toggle", $class_name));
-    $sidebar_toggle = '<a class="'.$class_name.'" role="button" title="Avaa sivuvalikko">';
-    $sidebar_toggle .= '<span class="icon-menu"></span>Valikko</a>';
-    return $sidebar_toggle;
+    ob_start();
+    extract($locals);
+    include($template);
+    return ob_get_clean();
 }
 
 ?>

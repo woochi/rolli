@@ -1,152 +1,37 @@
+$hero-height-small: rhythm(12)
+$hero-height-medium: rhythm(14)
+$hero-height-large: rhythm(16)
+
 .hero
-  display: table
-  position: relative
-  height: 100%
-  min-height: rhythm(20)
-  background-color: $grey1
-  background-position: center
+  @extend .cover
+  height: $hero-height-small
   background-size: cover
-  overflow: hidden
-
-.hero-background
-  position: absolute
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
-  background-position: center bottom
-
-  .has-image &
-    background-color: #4f5c51
-
-.hero-content-wrapper
-  display: table-cell
-  vertical-align: middle
-  position: relative
-  width: 100%
-  height: 100%
-
-  .has-image &
-    background-color: rgba($black, 0.3)
-    +background-image(linear-gradient(top, rgba($black, 0) 85%, rgba($black, 0.3) 100%))
-
-.hero-content
-  width: 100%
-  margin: 0 auto
-  padding: rhythm(2) rem-calc(30)
-  text-align: center
-
-%line
-  content: ""
-  position: absolute
-  top: 23px
-  height: 2px
-  width: rhythm(1.25)
-  background: $white
-
-.hero-supertitle
-  +uppercase(1px)
-
-  .has-image &
-    color: $yellow5
 
 .hero-title
-  +adjust-font-size-to(36px, 1.5)
-  position: relative
-  letter-spacing: -1px
-  margin: rhythm(0.5) 0
+  @extend .cover-title
 
-  .has-image &
-    color: $white
+.hero-wrap
+  @extend .cover-wrap
+  height: auto
 
-  &:before
-    @extend %line
-    left: 26px
+.hero-content
+  @extend .cover-content
 
-  &:after
-    @extend %line
-    right: 26px
+.hero-background
+  @extend .cover-background
+
+.hero-supertitle
+  @extend .cover-supertitle
 
 .hero-subtitle
-  +transition-delay(0.1s)
-  margin: 0
-
-  .has-image &
-    color: $white
-
-.scroll-down-button
-  +transition(transform 0.2s ease-out-quint())
-  cursor: pointer
-  position: absolute
-  bottom: rhythm(1)
-  left: 0
-  right: 0
-  width: rhythm(2)
-  height: rhythm(2)
-  margin: auto
-  background: url("images/caret_down_black.svg") center no-repeat
-  background-size: 50% auto
-  border-radius: 50%
-
-  .has-image &
-    border-color: $white
-    background-image: url("images/caret_down_white.svg")
-
-  &:hover
-    +transform(scale(1.1, 1.1))
+  @extend .cover-subtitle
 
 @media #{$medium-up}
 
-  %line-medium
-    top: 32px
-    height: 2px
-    width: rhythm(1.75)
-
-  .scroll-down-button
-    bottom: rhythm(2)
-
-  .hero-content
-    max-width: rhythm(19)
-
-  .hero-supertitle
-    letter-spacing: 2px
-    font-weight: 600
-
-  .hero-title
-    +adjust-font-size-to(54px, 2)
-    font-weight: 300
-
-    &:before
-      @extend %line-medium
-      left: 61px
-
-    &:after
-      @extend %line-medium
-      right: 61px
-
-  .hero-subtitle
-    +adjust-font-size-to(18px)
-    position: relative
+  .hero
+    height: $hero-height-medium
 
 @media #{$large-up}
 
-  %line-large
-    width: rhythm(2.25)
-    top: 42px
-
-  .hero-content
-    max-width: rhythm(22)
-
-  .hero-supertitle
-    letter-spacing: 3px
-
-  .hero-title
-    +adjust-font-size-to(72px, 2.5)
-
-    &:before
-      @extend %line-large
-      left: 40px
-
-    &:after
-      @extend %line-large
-      right: 40px
+  .hero
+    height: $hero-height-large

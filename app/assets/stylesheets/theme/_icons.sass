@@ -3,21 +3,20 @@
   height: 3px
   background-color: $black
 
-  .has-image &
+  .has-image .nav-header &
     background-color: $white
 
 %icon-bar-pseudo
   content: ""
   position: absolute
+  left: 0
 
 .icon-menu
   @extend %icon-bar
   display: inline-block
   vertical-align: middle
   position: relative
-  margin: rhythm(0.44) 0
-  margin-left: rhythm(0.25)
-  float: right
+  margin: -3px 0 0 rhythm(0.25)
 
   &::before
     @extend %icon-bar
