@@ -14,5 +14,6 @@
     <div class="cover-content">
       <?= $content ?>
     </div>
+    <a class="cover-scroll-btn"></a>
   </div>
 </div>

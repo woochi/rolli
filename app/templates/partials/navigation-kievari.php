@@ -1,8 +1,9 @@
 <nav class="nav-header">
+  <?php get_template_part("logo"); ?>
   <?php rolli_nav(array(
     'theme_location' => 'kievari'
   )); ?>
-  <a class="right-off-canvas-toggle nav-toggle" href="#">Menu</a>
+  <?php get_template_part("navigation_toggle"); ?>
 </nav>
 
 <div class="nav-sidebar right-off-canvas-menu">

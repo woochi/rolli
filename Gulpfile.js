@@ -16,7 +16,9 @@ var prefix = require('gulp-autoprefixer');
 var watch = require('gulp-watch');
 var connect = require('gulp-connect');
 var flatten = require("gulp-flatten");
+var rsync = require("gulp-rsync");
 var del = require("del");
+var sequence = require('run-sequence');
 
 var bundles = [
   {source: './app/assets/javascripts/theme.coffee', out: "theme.js"},
@@ -89,8 +91,8 @@ gulp.task("copy", function(){
     .pipe(gulp.dest("./build"))
 });
 
-gulp.task("clean", function(){
-  del("./build", {force: true});
+gulp.task("clean", function(callback){
+  del(["./build/**/*"], {force: true}, callback);
 });
 
 gulp.task("watch", function(){
@@ -104,4 +106,20 @@ gulp.task("watch", function(){
   ], function(){gulp.start("copy");});
 });
 
-gulp.task("default", ["clean", "scripts", "styles", "images", "copy", "watch"]);
+gulp.task("rsync", function(){
+  gulp.src("build/")
+    .pipe(rsync({
+      destination: "/var/www/wp-content/themes/rolli",
+      host: "root@128.199.42.152",
+      recursive: true,
+      delete: true
+    }));
+});
+
+gulp.task("default", function(){
+  sequence("clean", ["clean", "scripts", "styles", "images", "copy"], "watch")
+});
+
+gulp.task("deploy", function(callback){
+  sequence("clean", ["scripts", "styles", "images", "copy"], "rsync");
+});
