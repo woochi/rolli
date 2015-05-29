@@ -106,20 +106,38 @@ gulp.task("watch", function(){
   ], function(){gulp.start("copy");});
 });
 
-gulp.task("rsync", function(){
-  gulp.src("build/")
-    .pipe(rsync({
-      destination: "/var/www/wp-content/themes/rolli",
-      host: "root@128.199.42.152",
-      recursive: true,
-      delete: true
-    }));
+gulp.task("rsync", function(callback){
+  var Rsync = require('rsync');
+  var rsync = new Rsync()
+    .shell('ssh')
+    .delete()
+    .recursive()
+    .progress()
+    .source('./build/')
+    .destination('root@rolli.org:/var/www/wp-content/themes/rolli');
+  rsync.execute(function(err, code, cmd) {
+    console.log(code, cmd);
+    if (err) {console.log(err)};
+    callback();
+  });
+});
+
+gulp.task("build", function(callback){
+  sequence(
+    "clean",
+    ["scripts", "styles", "images", "copy"],
+    callback
+  )
 });
 
 gulp.task("default", function(){
-  sequence("clean", ["clean", "scripts", "styles", "images", "copy"], "watch")
+  sequence("clean", "build", "watch")
 });
 
 gulp.task("deploy", function(callback){
-  sequence("clean", ["scripts", "styles", "images", "copy"], "rsync");
+  sequence(
+    "clean",
+    ["scripts", "styles", "images", "copy"],
+    "rsync",
+    callback);
 });

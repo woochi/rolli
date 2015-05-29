@@ -15,6 +15,7 @@ function cover($atts, $content){
 
 function feature($atts, $content){
     $locals = shortcode_atts(array(
+        "id" => NULL,
         "align" => "left",
         "class_name" => "feature"
     ), $atts);

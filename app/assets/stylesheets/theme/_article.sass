@@ -27,9 +27,10 @@ $article-footer-font-size: $base-font-size + 4px
   z-index: $zindex-article-type
   width: rhythm(3)
   height: rhythm(3)
-  margin: rhythm(-3.5) auto rhythm(1)
+  margin: rhythm(-1.5) auto 0
   border-radius: 50%
-  background: $white
+  background: $white url("images/globe.svg") center no-repeat
+  background-size: rhythm(2) auto
 
 .article-footer
   +adjust-font-size-to($article-footer-font-size)
@@ -40,6 +41,8 @@ $article-footer-font-size: $base-font-size + 4px
 
 .article-image-full
   margin: rhythm(1) 0
+  border: 1px solid $grey1
+  border-width: 1px 0
 
 .article-intro
   +adjust-font-size-to($base-font-size + 2px)
@@ -53,6 +56,7 @@ $article-footer-font-size: $base-font-size + 4px
     width: rhythm(3)
     height: rhythm(3)
     margin-top: rhythm(-1.5)
+    margin-bottom: rhythm(1)
 
   .article-image-full
     margin: rhythm(2) 0

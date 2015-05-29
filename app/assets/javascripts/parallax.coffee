@@ -3,9 +3,9 @@ $ = require("jquery")
 Parallax =
 
   initialize: ->
-    $scroller = $(".content")
+    $scroller = $(".off-canvas-wrap")
     $background = $(".cover-background")
-    $content = $(".cover-wrap")
+    $content = $(".cover-content")
     $scrollerNode = $scroller[0]
     $contentNode = $content[0]
     $backgroundNode = $background[0]
